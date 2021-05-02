@@ -64,10 +64,10 @@ module ArangoDB =
 
     (* Client *)
 
-    let setConfig = Client.setConfig
+    let SetConfig = Client.SetConfig
 
-    let getCollection = Collection.getCollection
-    let createCollection = Collection.createCollection
+    let GetCollection = Collection.GetCollection
+    let CreateCollection = Collection.CreateCollection
 
     let Query<'T> = __Query.Query<'T>
     let QueryNext<'T> = __Query.QueryNext<'T>

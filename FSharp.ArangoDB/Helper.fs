@@ -9,19 +9,19 @@ module internal Helper =
     open System.Net.Http
     open System.Text
 
-    let deserialize<'T> (content: HttpContent) =
+    let Deserialize<'T> (content: HttpContent) =
         content.ReadAsStringAsync()
         |> Async.AwaitTask
         |> Async.RunSynchronously
         |> JsonConvert.DeserializeObject<'T>
 
-    let host action =
+    let Host action =
         Url.Combine(
             action
             |> Array.append [| defaultConfig.__Target |]
         )
 
-    let serialize record =
+    let Serialize record =
         new StringContent(
             JsonConvert.SerializeObject(
                 record,

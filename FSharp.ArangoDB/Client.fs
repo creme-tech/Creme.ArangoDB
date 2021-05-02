@@ -15,8 +15,8 @@ module internal Client =
           Host = "http://127.0.0.1:8529/"
           __Target = "http://127.0.0.1:8529/_db/_system" }
 
-    let setConfig (setConfig: Client -> Client) =
-        let next = setConfig defaultConfig
+    let SetConfig (setter: Client -> Client) =
+        let next = setter defaultConfig
 
         defaultConfig.__Client.DefaultRequestHeaders.Clear()
         defaultConfig.__Client.DefaultRequestHeaders.Add("Authorization", next.Authorization)
