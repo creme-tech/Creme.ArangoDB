@@ -1,6 +1,6 @@
 # FSharp.ArangoDB
 
-⚠️ This project is in alpha release
+⚠️ This project is in alpha release  
 FSharp.ArangoDB is a ArangoDB driver for F# focused on consistency and minimalist
 
 ## Usage
