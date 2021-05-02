@@ -47,4 +47,4 @@ match ArangoDB.Query queryOptions with
 
 ## License
 
-This project is distributed under the [MIT license](LICENSE)
+This project is distributed under the [Apache License 2.0](LICENSE)
