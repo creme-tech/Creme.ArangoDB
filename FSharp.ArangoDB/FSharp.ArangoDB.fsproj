@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Description>A consistent and minimal F# driver for ArangoDB</Description>
+    <Authors>weslenng &lt;weslenng@outlook.com&gt;</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/nglabo/FSharp.ArangoDB</PackageProjectUrl>
+    <Copyright>Copyright 2021</Copyright>
+    <RepositoryUrl>https://github.com/nglabo/FSharp.ArangoDB</RepositoryUrl>
+    <PackageTags>ArangoDB Driver F# FSharp</PackageTags>
+    <Version>0.1.0-alpha03</Version>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Types.fs" />
+    <Compile Include="Client.fs" />
+    <Compile Include="Helper.fs" />
+    <Compile Include="Collection.fs" />
+    <Compile Include="Query.fs" />
+    <Compile Include="Library.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Flurl" Version="3.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+</Project>

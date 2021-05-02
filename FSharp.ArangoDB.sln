@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharp.ArangoDB", "FSharp.ArangoDB\FSharp.ArangoDB.fsproj", "{66DC2799-EB0C-4532-AABC-E7EFD9271E86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66DC2799-EB0C-4532-AABC-E7EFD9271E86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66DC2799-EB0C-4532-AABC-E7EFD9271E86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66DC2799-EB0C-4532-AABC-E7EFD9271E86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66DC2799-EB0C-4532-AABC-E7EFD9271E86}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8E01CE87-C4CA-4277-AB9A-A87299380350}
+	EndGlobalSection
+EndGlobal
