@@ -69,5 +69,5 @@ module ArangoDB =
     let GetCollection = Collection.GetCollection
     let CreateCollection = Collection.CreateCollection
 
-    let Query<'T> = __Query.Query<'T>
-    let QueryNext<'T> = __Query.QueryNext<'T>
+    let Query<'T> = Query'.Query<'T>
+    let QueryNext<'T> = Query'.QueryNext<'T>

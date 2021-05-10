@@ -1,6 +1,6 @@
 ﻿namespace FSharp.ArangoDB
 
-module internal __Query =
+module internal Query' =
     open Client
     open Helper
     open Types

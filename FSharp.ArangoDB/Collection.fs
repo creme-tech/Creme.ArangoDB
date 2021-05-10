@@ -27,6 +27,4 @@ module internal Collection =
             |> Async.AwaitTask
             |> Async.RunSynchronously
 
-        let status = int response.StatusCode
-
-        status
+        int response.StatusCode
