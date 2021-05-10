@@ -4,8 +4,7 @@ module internal Helper =
     open Client
 
     open Flurl
-    open Newtonsoft.Json
-    open Newtonsoft.Json.Serialization
+    open FSharp.Json
     open System.Net.Http
     open System.Text
 
@@ -13,7 +12,7 @@ module internal Helper =
         content.ReadAsStringAsync()
         |> Async.AwaitTask
         |> Async.RunSynchronously
-        |> JsonConvert.DeserializeObject<'T>
+        |> Json.deserialize<'T>
 
     let Host action =
         Url.Combine(
@@ -22,13 +21,4 @@ module internal Helper =
         )
 
     let Serialize record =
-        new StringContent(
-            JsonConvert.SerializeObject(
-                record,
-                JsonSerializerSettings(
-                    ContractResolver = DefaultContractResolver(NamingStrategy = CamelCaseNamingStrategy())
-                )
-            ),
-            Encoding.UTF8,
-            "application/json"
-        )
+        new StringContent(Json.serialize record, Encoding.UTF8, "application/json")
