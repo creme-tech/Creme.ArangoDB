@@ -5,6 +5,7 @@ module internal Helper =
 
     open Flurl
     open FSharp.Json
+    open Newtonsoft.Json
     open System.Net.Http
     open System.Text
 
@@ -12,7 +13,7 @@ module internal Helper =
         content.ReadAsStringAsync()
         |> Async.AwaitTask
         |> Async.RunSynchronously
-        |> Json.deserialize<'T>
+        |> JsonConvert.DeserializeObject<'T>
 
     let Host action =
         Url.Combine(
