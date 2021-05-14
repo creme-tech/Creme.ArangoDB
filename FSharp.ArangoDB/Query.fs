@@ -21,7 +21,7 @@ module internal Query' =
                 |> deserialize<QueryResult<'T>>
                 |> Some
 
-        [ status, result ]
+        (status, result)
 
     let queryNext<'T> cursorId (record: Query<_>) =
         let response =
@@ -39,4 +39,4 @@ module internal Query' =
                 |> deserialize<QueryResult<'T>>
                 |> Some
 
-        [ status, result ]
+        (status, result)
