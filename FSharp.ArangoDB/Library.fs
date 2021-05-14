@@ -86,5 +86,5 @@ module ArangoDB =
 
     let createSearch = Search.createSearch
 
-    let query<'T> = Query'.query<'T>
-    let queryNext<'T> = Query'.queryNext<'T>
+    let query<'T> = Query.query<'T>
+    let queryNext<'T> = Query.queryNext<'T>

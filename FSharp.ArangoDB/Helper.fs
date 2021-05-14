@@ -12,7 +12,7 @@ module Helper =
         content.ReadAsStringAsync()
         |> Async.AwaitTask
         |> Async.RunSynchronously
-        |> Json.deserialize
+        |> Json.deserialize<'T>
 
     let host action =
         Url.Combine(action |> Array.append [| defaultConfig.target |])
