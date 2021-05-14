@@ -17,9 +17,11 @@ module internal Query' =
             if status <> 201 then
                 None
             else
-                Some(response.Content |> deserialize<QueryResult<'T>>)
+                response.Content
+                |> deserialize<QueryResult<'T>>
+                |> Some
 
-        (status, result)
+        [ status, result ]
 
     let queryNext<'T> cursorId (record: Query<_>) =
         let response =
@@ -33,6 +35,8 @@ module internal Query' =
             if status <> 201 then
                 None
             else
-                Some(response.Content |> deserialize<QueryResult<'T>>)
+                response.Content
+                |> deserialize<QueryResult<'T>>
+                |> Some
 
-        (status, result)
+        [ status, result ]

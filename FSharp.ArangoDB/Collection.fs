@@ -11,15 +11,13 @@ module internal Collection =
             |> Async.AwaitTask
             |> Async.RunSynchronously
 
-        let status = int response.StatusCode
-
-        let collection =
+        (* let collection =
             if status <> 200 then
                 None
             else
-                Some(response.Content |> deserialize<Collection>)
+                Some(response.Content |> deserialize<Collection>) *)
 
-        (status, collection)
+        int response.StatusCode
 
     let createCollection (record: CollectionOptions) =
         let response =

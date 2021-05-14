@@ -1,11 +1,11 @@
 ﻿namespace FSharp.ArangoDB
 
-module internal View =
+module internal Search =
     open Client
     open Helper
     open Types
 
-    let createView (record: ViewOptions) =
+    let createSearch (record: ViewOptions) =
         let response =
             defaultConfig.client.PostAsync(host [| "_api"; "view#arangosearch" |], serialize record)
             |> Async.AwaitTask
