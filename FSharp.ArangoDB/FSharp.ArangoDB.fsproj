@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netcoreapp5</TargetFramework>
     <Description>A consistent and minimal F# driver for ArangoDB</Description>
     <Authors>Weslen Guerreiro</Authors>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
@@ -19,8 +19,8 @@
     <Compile Include="Helper.fs" />
     <Compile Include="Collection.fs" />
     <Compile Include="Index.fs" />
+    <Compile Include="Search.fs" />
     <Compile Include="Query.fs" />
-    <Compile Include="View.fs" />
     <Compile Include="Library.fs" />
   </ItemGroup>
 
