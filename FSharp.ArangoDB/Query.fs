@@ -5,9 +5,9 @@ module internal Query' =
     open Helper
     open Types
 
-    let Query<'T> (record: Query) =
+    let query<'T> (record: Query<_>) =
         let response =
-            defaultConfig.__Client.PostAsync(Host [| "_api"; "cursor" |], Serialize record)
+            defaultConfig.client.PostAsync(host [| "_api"; "cursor" |], serialize record)
             |> Async.AwaitTask
             |> Async.RunSynchronously
 
@@ -17,13 +17,13 @@ module internal Query' =
             if status <> 201 then
                 None
             else
-                Some(response.Content |> Deserialize<QueryResult<'T>>)
+                Some(response.Content |> deserialize<QueryResult<'T>>)
 
         (status, result)
 
-    let QueryNext<'T> cursorId (record: Query) =
+    let queryNext<'T> cursorId (record: Query<_>) =
         let response =
-            defaultConfig.__Client.PostAsync(Host [| "_api"; "cursor"; cursorId |], Serialize record)
+            defaultConfig.client.PostAsync(host [| "_api"; "cursor"; cursorId |], serialize record)
             |> Async.AwaitTask
             |> Async.RunSynchronously
 
@@ -33,6 +33,6 @@ module internal Query' =
             if status <> 201 then
                 None
             else
-                Some(response.Content |> Deserialize<QueryResult<'T>>)
+                Some(response.Content |> deserialize<QueryResult<'T>>)
 
         (status, result)

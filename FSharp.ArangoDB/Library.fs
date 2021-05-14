@@ -40,34 +40,48 @@ module ArangoDB =
 
     (* Options *)
 
-    let CollectionKeyTypeAutoIncrement = "AutoIncrement".ToLower()
+    let collectionKeyTypeAutoIncrement = "AutoIncrement".ToLower()
 
-    let CollectionKeyTypePadded = "Padded".ToLower()
-    let CollectionKeyTypeTraditional = "Traditional".ToLower()
-    let CollectionKeyTypeUUID = "UUID".ToLower()
+    let collectionKeyTypePadded = "Padded".ToLower()
+    let collectionKeyTypeTraditional = "Traditional".ToLower()
+    let collectionKeyTypeUUID = "UUID".ToLower()
 
-    let CollectionTypeDocument = 2
-    let CollectionTypeEdge = 3
+    let collectionTypeDocument = 2
+    let collectionTypeEdge = 3
 
     (* Defaults *)
 
-    let CollectionKeyOptions = { Type = CollectionKeyTypeTraditional }
+    let keyOptions = { type' = collectionKeyTypeTraditional }
 
-    let CollectionOptions =
-        { Name = null
-          KeyOptions = CollectionKeyOptions
-          Type = CollectionTypeDocument }
+    let collectionOptions =
+        { name = null
+          keyOptions = keyOptions
+          type' = collectionTypeDocument }
 
-    let QueryOptions =
-        { Query = null
-          BindVars = Map.empty<string, obj> }
+    let indexOptions =
+        { type' = "persistent"
+          unique = false
+          fields = [] }
+
+    let queryOptions =
+        { query = null
+          bindVars = Map.empty<string, _> }
+
+    let viewOptions =
+        { links = Map.empty<string, _>
+          name = null
+          type' = "arangosearch" }
 
     (* Client *)
 
-    let SetConfig = Client.SetConfig
+    let setConfig = Client.setConfig
 
-    let GetCollection = Collection.GetCollection
-    let CreateCollection = Collection.CreateCollection
+    let getCollection = Collection.getCollection
+    let createCollection = Collection.createCollection
 
-    let Query<'T> = Query'.Query<'T>
-    let QueryNext<'T> = Query'.QueryNext<'T>
+    let createIndex = Index.createIndex
+
+    let query<'T> = Query'.query<'T>
+    let queryNext<'T> = Query'.queryNext<'T>
+
+    let createView = View.createView

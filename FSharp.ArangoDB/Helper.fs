@@ -1,25 +1,21 @@
 ﻿namespace FSharp.ArangoDB
 
-module internal Helper =
+module Helper =
     open Client
 
     open Flurl
     open FSharp.Json
-    open Newtonsoft.Json
     open System.Net.Http
     open System.Text
 
-    let Deserialize<'T> (content: HttpContent) =
+    let deserialize<'T> (content: HttpContent) =
         content.ReadAsStringAsync()
         |> Async.AwaitTask
         |> Async.RunSynchronously
-        |> JsonConvert.DeserializeObject<'T>
+        |> Json.deserialize
 
-    let Host action =
-        Url.Combine(
-            action
-            |> Array.append [| defaultConfig.__Target |]
-        )
+    let host action =
+        Url.Combine(action |> Array.append [| defaultConfig.target |])
 
-    let Serialize record =
+    let serialize record =
         new StringContent(Json.serialize record, Encoding.UTF8, "application/json")

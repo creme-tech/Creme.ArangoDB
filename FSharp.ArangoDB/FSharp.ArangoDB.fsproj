@@ -9,7 +9,7 @@
     <Copyright>Copyright 2021</Copyright>
     <RepositoryUrl>https://github.com/nglabo/FSharp.ArangoDB</RepositoryUrl>
     <PackageTags>ArangoDB Driver F# FSharp</PackageTags>
-    <Version>0.1.0-alpha07</Version>
+    <Version>0.1.0-alpha13</Version>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
@@ -18,14 +18,15 @@
     <Compile Include="Client.fs" />
     <Compile Include="Helper.fs" />
     <Compile Include="Collection.fs" />
+    <Compile Include="Index.fs" />
     <Compile Include="Query.fs" />
+    <Compile Include="View.fs" />
     <Compile Include="Library.fs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Flurl" Version="3.0.1" />
     <PackageReference Include="FSharp.Json" Version="0.4.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
 </Project>
