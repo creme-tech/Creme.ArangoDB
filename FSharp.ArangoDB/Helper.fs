@@ -18,4 +18,9 @@ module Helper =
         Url.Combine(action |> Array.append [| defaultConfig.target |])
 
     let serialize record =
-        new StringContent(Json.serialize record, Encoding.UTF8, "application/json")
+        let serialized = Json.serialize record
+
+        if defaultConfig.debug then
+            printfn "Serialized payload: %s" serialized
+
+        new StringContent(serialized, Encoding.UTF8, "application/json")

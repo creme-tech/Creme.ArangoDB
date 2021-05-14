@@ -40,37 +40,40 @@ module ArangoDB =
 
     (* Options *)
 
-    let collectionKeyTypeAutoIncrement = "AutoIncrement".ToLower()
 
-    let collectionKeyTypePadded = "Padded".ToLower()
-    let collectionKeyTypeTraditional = "Traditional".ToLower()
-    let collectionKeyTypeUUID = "UUID".ToLower()
+    let KeyTypeAutoIncrement = "autoincrement"
 
-    let collectionTypeDocument = 2
-    let collectionTypeEdge = 3
+    let KeyTypePadded = "padded"
+    let KeyTypeTraditional = "traditional"
+    let KeyTypeUUID = "uuid"
+
+    let DocumentCollection = 2
+    let EdgeCollection = 3
+
+    let PersistentIndex = "persistent"
+
+    let SearchView = "arangosearch"
 
     (* Defaults *)
 
-    let keyOptions = { type' = collectionKeyTypeTraditional }
-
     let collectionOptions =
-        { name = null
-          keyOptions = keyOptions
-          type' = collectionTypeDocument }
+        { keyOptions = { type' = KeyTypeUUID }
+          name = null
+          type' = DocumentCollection }
 
     let indexOptions =
-        { type' = "persistent"
-          unique = false
-          fields = [] }
+        { fields = []
+          type' = PersistentIndex
+          unique = true }
 
     let queryOptions =
-        { query = null
-          bindVars = Map.empty<string, _> }
+        { bindVars = Map.empty<string, _>
+          query = null }
 
     let viewOptions =
         { links = Map.empty<string, _>
           name = null
-          type' = "arangosearch" }
+          type' = SearchView }
 
     (* Client *)
 
@@ -81,7 +84,7 @@ module ArangoDB =
 
     let createIndex = Index.createIndex
 
+    let createSearch = Search.createSearch
+
     let query<'T> = Query'.query<'T>
     let queryNext<'T> = Query'.queryNext<'T>
-
-    let createView = View.createView

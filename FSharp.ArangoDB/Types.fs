@@ -5,12 +5,11 @@ module Types =
     open System.Net.Http
 
     type Collection =
-        { id: string
+        { isSystem: bool
           name: string
           status: int
           [<JsonField "type">]
-          type': int
-          isSystem: bool }
+          type': int }
 
     type CollectionKeyOptions =
         { [<JsonField "type">]
@@ -23,16 +22,16 @@ module Types =
           type': int }
 
     type IndexOptions =
-        { [<JsonField "type">]
+        { fields: string list
+          [<JsonField "type">]
           type': string
-          unique: bool
-          fields: string list }
+          unique: bool }
 
     type Query<'T> =
-        { query: string
-          bindVars: Map<string, 'T> }
+        { bindVars: Map<string, 'T>
+          query: string }
 
-    type QueryResult<'T> = { id: string option; result: 'T }
+    type QueryResult<'T> = { result: 'T }
 
     type ViewLinks = { includeAllFields: bool }
 
@@ -46,6 +45,6 @@ module Types =
         { authorization: string
           client: HttpClient
           database: string
-          debug: bool (* TODO: Debug mode *)
+          debug: bool
           host: string
           target: string }
