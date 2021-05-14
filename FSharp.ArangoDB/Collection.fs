@@ -5,9 +5,9 @@ module internal Collection =
     open Helper
     open Types
 
-    let GetCollection name =
+    let getCollection name =
         let response =
-            defaultConfig.__Client.GetAsync(Host [| "_api"; "collection"; name |])
+            defaultConfig.client.GetAsync(host [| "_api"; "collection"; name |])
             |> Async.AwaitTask
             |> Async.RunSynchronously
 
@@ -17,13 +17,13 @@ module internal Collection =
             if status <> 200 then
                 None
             else
-                Some(response.Content |> Deserialize<Collection>)
+                Some(response.Content |> deserialize<Collection>)
 
         (status, collection)
 
-    let CreateCollection (record: CollectionOptions) =
+    let createCollection (record: CollectionOptions) =
         let response =
-            defaultConfig.__Client.PostAsync(Host [| "_api"; "collection" |], Serialize record)
+            defaultConfig.client.PostAsync(host [| "_api"; "collection" |], serialize record)
             |> Async.AwaitTask
             |> Async.RunSynchronously
 

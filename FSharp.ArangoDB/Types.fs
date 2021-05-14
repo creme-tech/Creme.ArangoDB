@@ -1,32 +1,51 @@
 ﻿namespace FSharp.ArangoDB
 
 module Types =
+    open FSharp.Json
     open System.Net.Http
 
     type Collection =
-        { ID: string
-          Name: string
-          Status: int
-          Type: int
-          IsSystem: bool }
+        { id: string
+          name: string
+          status: int
+          [<JsonField "type">]
+          type': int
+          isSystem: bool }
 
-    type CollectionKeyOptions = { Type: string }
+    type CollectionKeyOptions =
+        { [<JsonField "type">]
+          type': string }
 
     type CollectionOptions =
-        { Name: string
-          KeyOptions: CollectionKeyOptions
-          Type: int }
+        { name: string
+          keyOptions: CollectionKeyOptions
+          [<JsonField "type">]
+          type': int }
 
-    type Query =
-        { Query: string
-          BindVars: Map<string, obj> }
+    type IndexOptions =
+        { [<JsonField "type">]
+          type': string
+          unique: bool
+          fields: string list }
 
-    type QueryResult<'T> = { ID: string option; Result: 'T }
+    type Query<'T> =
+        { query: string
+          bindVars: Map<string, 'T> }
+
+    type QueryResult<'T> = { id: string option; result: 'T }
+
+    type ViewLinks = { includeAllFields: bool }
+
+    type ViewOptions =
+        { links: Map<string, ViewLinks>
+          name: string
+          [<JsonField "type">]
+          type': string }
 
     type Client =
-        { Authorization: string
-          __Client: HttpClient (* Internal *)
-          Database: string
-          __Debug: bool (* TODO: Debug mode *) (* Internal *)
-          Host: string
-          __Target: string (* Internal *)  }
+        { authorization: string
+          client: HttpClient
+          database: string
+          debug: bool (* TODO: Debug mode *)
+          host: string
+          target: string }
