@@ -9,37 +9,37 @@ module Types =
           name: string
           status: int
           [<JsonField "type">]
-          type': int }
+          _type: int }
 
     type CollectionKeyOptions =
         { [<JsonField "type">]
-          type': string }
+          _type: string }
 
     type CollectionOptions =
-        { name: string
+        { name: string option
           keyOptions: CollectionKeyOptions
           [<JsonField "type">]
-          type': int }
+          _type: int }
 
     type IndexOptions =
         { fields: string list
           [<JsonField "type">]
-          type': string
+          _type: string
           unique: bool }
 
     type Query<'T> =
         { bindVars: Map<string, 'T>
-          query: string }
+          query: string option }
 
     type QueryResult<'T> = { result: 'T }
 
-    type ViewLinks = { includeAllFields: bool }
+    type SearchLinks = { includeAllFields: bool }
 
-    type ViewOptions =
-        { links: Map<string, ViewLinks>
-          name: string
+    type SearchOptions =
+        { links: Map<string, SearchLinks>
+          name: string option
           [<JsonField "type">]
-          type': string }
+          _type: string }
 
     type Client =
         { authorization: string
