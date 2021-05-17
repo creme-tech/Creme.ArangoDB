@@ -28,10 +28,11 @@ module Types =
           unique: bool }
 
     type Query<'T> =
-        { bindVars: Map<string, 'T>
+        { batchSize: int
+          bindVars: Map<string, 'T>
           query: string option }
 
-    type QueryResult<'T> = { result: 'T }
+    type QueryResult<'T> = { id: string; result: 'T }
 
     type SearchLinks = { includeAllFields: bool }
 
