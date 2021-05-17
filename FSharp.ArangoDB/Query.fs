@@ -25,14 +25,16 @@ module internal Query =
 
     let queryNext<'T> cursorId (record: Query<_>) =
         let response =
-            defaultConfig.client.PostAsync(host [| "_api"; "cursor"; cursorId |], serialize record)
+            defaultConfig.client.PutAsync(host [| "_api"; "cursor"; cursorId |], serialize record)
             |> Async.AwaitTask
             |> Async.RunSynchronously
 
         let status = int response.StatusCode
 
+        (* Check if PUT returns 200 or 201 *)
+
         let result =
-            if status <> 201 then
+            if status <> 200 && status <> 201 then
                 None
             else
                 response.Content
