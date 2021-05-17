@@ -32,7 +32,7 @@ module Types =
           bindVars: Map<string, 'T>
           query: string option }
 
-    type QueryResult<'T> = { id: string; result: 'T }
+    type QueryResult<'T> = { id: string option; result: 'T }
 
     type SearchLinks = { includeAllFields: bool }
 
