@@ -66,8 +66,10 @@ module ArangoDB =
           _type = PersistentIndex
           unique = true }
 
+    (* Check the default value of "batchSize" used by ArangoDB server later *)
     let QueryOptions =
-        { bindVars = Map.empty<string, _>
+        { batchSize = 32
+          bindVars = Map.empty<string, _>
           query = None }
 
     let SearchOptions =
