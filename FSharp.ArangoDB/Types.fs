@@ -4,13 +4,6 @@ module Types =
     open FSharp.Json
     open System.Net.Http
 
-    type Collection =
-        { isSystem: bool
-          name: string
-          status: int
-          [<JsonField "type">]
-          _type: int }
-
     type CollectionKeyOptions =
         { [<JsonField "type">]
           _type: string }

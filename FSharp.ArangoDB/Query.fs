@@ -31,8 +31,6 @@ module internal Query =
 
         let status = int response.StatusCode
 
-        (* Check if PUT returns 200 or 201 *)
-
         let result =
             if status <> 200 && status <> 201 then
                 None

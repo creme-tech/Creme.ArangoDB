@@ -11,12 +11,6 @@ module internal Collection =
             |> Async.AwaitTask
             |> Async.RunSynchronously
 
-        (* let collection =
-            if status <> 200 then
-                None
-            else
-                Some(response.Content |> deserialize<Collection>) *)
-
         int response.StatusCode
 
     let createCollection (record: CollectionOptions) =

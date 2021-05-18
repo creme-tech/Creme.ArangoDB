@@ -4,12 +4,7 @@ module ArangoDB =
     open Types
 
     (* Status *)
-
-    [<Literal>]
-    let OK = 200
-
-    [<Literal>]
-    let Created = 201
+    let (|OK|T|) status = if status = 200 then OK else T
 
     [<Literal>]
     let BadRequest = 400
