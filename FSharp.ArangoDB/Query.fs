@@ -20,7 +20,7 @@ module internal Query' =
                     else
                         let! object = response.Content |> deserialize<QueryResult<'T>>
 
-                        return  object
+                        return object
                 }
 
             return status, rows
