@@ -72,7 +72,7 @@ module ArangoDB =
           Query = None }
 
     let SearchLinkOptions = { IncludeAllFields = false }
-    
+
     let SearchOptions =
         { Links = Map.empty<string, _>
           Name = None
@@ -82,9 +82,11 @@ module ArangoDB =
 
     let (|OK|Error|) (status, response) =
         if status <> 200 && status <> 201 then
-            Error status
+            Error
         else
-            OK(Option.get response)
+            match response with
+            | Some response -> response
+            | None -> Error
 
     [<Literal>]
     let BadRequest = 400
