@@ -11,7 +11,7 @@ module internal Collection =
         task {
             let! response = defaultConfig.Client.GetAsync(host [| "_api"; "collection"; name |])
 
-            return int response.StatusCode, { Id = None; Result = [] }
+            return int response.StatusCode, EmptyQueryResult
         }
 
 
@@ -19,5 +19,5 @@ module internal Collection =
         task {
             let! response = defaultConfig.Client.PostAsync(host [| "_api"; "collection" |], serialize record)
 
-            return int response.StatusCode, { Id = None; Result = [] }
+            return int response.StatusCode, EmptyQueryResult
         }
