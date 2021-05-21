@@ -81,10 +81,9 @@ module ArangoDB =
     (* Status *)
 
     let (|OK|Error|) (status, response) =
-        if status <> 200 && status <> 201 then
-            Error
-        else
-            OK response
+        if status = 200 then OK response
+        elif status = 201 then OK response
+        else Error
 
     [<Literal>]
     let BadRequest = 400

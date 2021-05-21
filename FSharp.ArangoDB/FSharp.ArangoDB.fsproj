@@ -9,7 +9,7 @@
     <Copyright>Copyright 2021</Copyright>
     <RepositoryUrl>https://github.com/nglabo/FSharp.ArangoDB</RepositoryUrl>
     <PackageTags>ArangoDB Driver F# FSharp</PackageTags>
-    <Version>0.1.0-alpha26</Version>
+    <Version>0.1.0-alpha27</Version>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 

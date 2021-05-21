@@ -1,6 +1,7 @@
 ﻿namespace FSharp.ArangoDB
 
 module Helper =
+    open ArangoDB
     open Client
 
     open Flurl
@@ -21,6 +22,8 @@ module Helper =
 
             return Json.deserializeEx<'T> JsonConfig payload
         }
+
+    let internal EmptyQueryResult = { Id = None; Result = [] }
 
     let host action =
         Url.Combine(action |> Array.append [| defaultConfig.Target |])

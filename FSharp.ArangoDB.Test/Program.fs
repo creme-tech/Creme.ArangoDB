@@ -1,4 +1,2 @@
-﻿open FSharp.ArangoDB
-
-[<EntryPoint>]
+﻿[<EntryPoint>]
 let main args = 0
