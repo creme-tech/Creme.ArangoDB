@@ -1,19 +1,21 @@
 ﻿namespace FSharp.ArangoDB
 
 module internal Index =
+    open ArangoDB
     open Client
     open Helper
-    open Types
 
-    let createIndex collectionName (record: IndexOptions) =
-        let target =
-            host [| "_api"
-                    "index"
-                    "?collection=" + collectionName |]
+    open FSharp.Control.Tasks
 
-        let response =
-            defaultConfig.client.PostAsync(target, serialize record)
-            |> Async.AwaitTask
-            |> Async.RunSynchronously
+    let CreateIndex collectionName (record: IndexOptions) =
+        task {
+            let! response =
+                defaultConfig.Client.PostAsync(
+                    host [| "_api"
+                            "index"
+                            "?collection=" + collectionName |],
+                    serialize record
+                )
 
-        int response.StatusCode
+            return int response.StatusCode, None
+        }

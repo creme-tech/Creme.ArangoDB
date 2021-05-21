@@ -1,22 +1,21 @@
 ﻿namespace FSharp.ArangoDB
 
 module internal Search =
+    open ArangoDB
     open Client
     open Helper
-    open Types
+    open FSharp.Control.Tasks
 
-    let getSearch name =
-        let response =
-            defaultConfig.client.GetAsync(host [| "_api"; "view"; name |])
-            |> Async.AwaitTask
-            |> Async.RunSynchronously
+    let GetSearch name =
+        task {
+            let! response = defaultConfig.Client.GetAsync(host [| "_api"; "view"; name |])
 
-        int response.StatusCode
+            return int response.StatusCode, None
+        }
 
-    let createSearch (record: SearchOptions) =
-        let response =
-            defaultConfig.client.PostAsync(host [| "_api"; "view#arangosearch" |], serialize record)
-            |> Async.AwaitTask
-            |> Async.RunSynchronously
+    let CreateSearch (record: SearchOptions) =
+        task {
+            let! response = defaultConfig.Client.PostAsync(host [| "_api"; "view#arangosearch" |], serialize record)
 
-        int response.StatusCode
+            return int response.StatusCode, None
+        }
