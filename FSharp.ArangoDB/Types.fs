@@ -72,7 +72,7 @@ module ArangoDB =
           Query = None }
 
     let SearchLinkOptions = { IncludeAllFields = false }
-
+    
     let SearchOptions =
         { Links = Map.empty<string, _>
           Name = None
