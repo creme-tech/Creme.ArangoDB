@@ -4,23 +4,31 @@ module Helper =
     open Client
 
     open Flurl
+    open FSharp.Control.Tasks
     open FSharp.Json
     open System.Net.Http
     open System.Text
 
+    let private JsonConfig =
+        JsonConfig.create (unformatted = false, jsonFieldNaming = Json.lowerCamelCase)
+
     let deserialize<'T> (content: HttpContent) =
-        content.ReadAsStringAsync()
-        |> Async.AwaitTask
-        |> Async.RunSynchronously
-        |> Json.deserialize<'T>
+        task {
+            let! payload = content.ReadAsStringAsync()
+
+            if defaultConfig.Debug then
+                printfn "Deserialized payload: %s" payload
+
+            return Json.deserializeEx<'T> JsonConfig payload
+        }
 
     let host action =
-        Url.Combine(action |> Array.append [| defaultConfig.target |])
+        Url.Combine(action |> Array.append [| defaultConfig.Target |])
 
     let serialize record =
-        let serialized = Json.serialize record
+        let payload = Json.serializeEx JsonConfig record
 
-        if defaultConfig.debug then
-            printfn "Serialized payload: %s" serialized
+        if defaultConfig.Debug then
+            printfn "Serialized payload: %s" payload
 
-        new StringContent(serialized, Encoding.UTF8, "application/json")
+        new StringContent(payload, Encoding.UTF8, "application/json")

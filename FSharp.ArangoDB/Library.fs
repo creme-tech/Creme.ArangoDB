@@ -1,88 +1,18 @@
 ﻿namespace FSharp.ArangoDB
 
-module ArangoDB =
-    open Types
-
-    (* Status *)
-    let (|OK|T|) status = if status = 200 then OK else T
-
-    [<Literal>]
-    let BadRequest = 400
-
-    [<Literal>]
-    let NotFound = 404
-
-    [<Literal>]
-    let MethodNotAllowed = 405
-
-    [<Literal>]
-    let Conflict = 409
-
-    [<Literal>]
-    let LengthRequired = 411
-
-    [<Literal>]
-    let PayloadTooLarge = 413
-
-    [<Literal>]
-    let URITooLong = 414
-
-    [<Literal>]
-    let RequestHeaderFieldsTooLarge = 431
-
-    [<Literal>]
-    let HTTPVersionNotSupported = 505
-
-    (* Options *)
-
-
-    let KeyTypeAutoIncrement = "AutoIncrement".ToLower()
-
-    let KeyTypePadded = "Padded".ToLower()
-    let KeyTypeTraditional = "Traditional".ToLower()
-    let KeyTypeUUID = "UUID".ToLower()
-
-    let DocumentCollection = 2
-    let EdgeCollection = 3
-
-    let PersistentIndex = "Persistent".ToLower()
-
-    let SearchView = "ArangoSearch".ToLower()
-
-    (* Defaults *)
-
-    let CollectionOptions =
-        { keyOptions = { _type = KeyTypeUUID }
-          name = None
-          _type = DocumentCollection }
-
-    let IndexOptions =
-        { fields = []
-          _type = PersistentIndex
-          unique = true }
-
-    (* Check the default value of "batchSize" used by ArangoDB server later *)
-    let QueryOptions =
-        { batchSize = 32
-          bindVars = Map.empty<string, _>
-          query = None }
-
-    let SearchOptions =
-        { links = Map.empty<string, _>
-          name = None
-          _type = SearchView }
+module ArangoClient =
 
     (* Client *)
 
-    let setConfig = Client.setConfig
+    let SetConfig = Client.SetConfig
 
-    let getCollection = Collection.getCollection
-    let createCollection = Collection.createCollection
+    let GetCollection = Collection.GetCollection
+    let CreateCollection = Collection.CreateCollection
 
-    let createIndex = Index.createIndex
+    let CreateIndex = Index.CreateIndex
 
-    let getSearch = Search.getSearch
-    let createSearch = Search.createSearch
+    let GetSearch = Search.GetSearch
+    let CreateSearch = Search.CreateSearch
 
-    let query<'T> = Query.query<'T>
-    let queryNext<'T> = Query.queryNext<'T>
+    let Query<'T> = Query'.Query<'T>
+    let QueryNext<'T> = Query'.QueryNext<'T>

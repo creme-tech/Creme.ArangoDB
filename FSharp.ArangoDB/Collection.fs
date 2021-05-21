@@ -1,22 +1,23 @@
 ﻿namespace FSharp.ArangoDB
 
 module internal Collection =
+    open ArangoDB
     open Client
     open Helper
-    open Types
 
-    let getCollection name =
-        let response =
-            defaultConfig.client.GetAsync(host [| "_api"; "collection"; name |])
-            |> Async.AwaitTask
-            |> Async.RunSynchronously
+    open FSharp.Control.Tasks
 
-        int response.StatusCode
+    let GetCollection name =
+        task {
+            let! response = defaultConfig.Client.GetAsync(host [| "_api"; "collection"; name |])
 
-    let createCollection (record: CollectionOptions) =
-        let response =
-            defaultConfig.client.PostAsync(host [| "_api"; "collection" |], serialize record)
-            |> Async.AwaitTask
-            |> Async.RunSynchronously
+            return int response.StatusCode, None
+        }
 
-        int response.StatusCode
+
+    let CreateCollection (record: CollectionOptions) =
+        task {
+            let! response = defaultConfig.Client.PostAsync(host [| "_api"; "collection" |], serialize record)
+
+            return int response.StatusCode, None
+        }

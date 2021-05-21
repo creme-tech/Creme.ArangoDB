@@ -1,42 +1,46 @@
 ﻿namespace FSharp.ArangoDB
 
-module internal Query =
+module internal Query' =
+    open ArangoDB
     open Client
     open Helper
-    open Types
 
-    let query<'T> (record: Query<_>) =
-        let response =
-            defaultConfig.client.PostAsync(host [| "_api"; "cursor" |], serialize record)
-            |> Async.AwaitTask
-            |> Async.RunSynchronously
+    open FSharp.Control.Tasks
 
-        let status = int response.StatusCode
+    let Query<'T> (record: Query<_>) =
+        task {
+            let! response = defaultConfig.Client.PostAsync(host [| "_api"; "cursor" |], serialize record)
 
-        let result =
-            if status <> 201 then
-                None
-            else
-                response.Content
-                |> deserialize<QueryResult<'T>>
-                |> Some
+            let status = int response.StatusCode
 
-        (status, result)
+            let! rows =
+                task {
+                    if status <> 201 then
+                        return None
+                    else
+                        let! object = response.Content |> deserialize<QueryResult<'T>>
 
-    let queryNext<'T> cursorId (record: Query<_>) =
-        let response =
-            defaultConfig.client.PutAsync(host [| "_api"; "cursor"; cursorId |], serialize record)
-            |> Async.AwaitTask
-            |> Async.RunSynchronously
+                        return Some object
+                }
 
-        let status = int response.StatusCode
+            return status, rows
+        }
 
-        let result =
-            if status <> 200 && status <> 201 then
-                None
-            else
-                response.Content
-                |> deserialize<QueryResult<'T>>
-                |> Some
+    let QueryNext<'T> cursorId (record: Query<_>) =
+        task {
+            let! response = defaultConfig.Client.PutAsync(host [| "_api"; "cursor"; cursorId |], serialize record)
 
-        (status, result)
+            let status = int response.StatusCode
+
+            let! rows =
+                task {
+                    if status <> 200 then
+                        return None
+                    else
+                        let! object = response.Content |> deserialize<QueryResult<'T>>
+
+                        return Some object
+                }
+
+            return status, rows
+        }

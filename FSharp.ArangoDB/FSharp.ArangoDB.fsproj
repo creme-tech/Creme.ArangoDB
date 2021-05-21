@@ -9,7 +9,7 @@
     <Copyright>Copyright 2021</Copyright>
     <RepositoryUrl>https://github.com/nglabo/FSharp.ArangoDB</RepositoryUrl>
     <PackageTags>ArangoDB Driver F# FSharp</PackageTags>
-    <Version>0.1.0-alpha20</Version>
+    <Version>0.1.0-alpha21</Version>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
@@ -27,6 +27,7 @@
   <ItemGroup>
     <PackageReference Include="Flurl" Version="3.0.1" />
     <PackageReference Include="FSharp.Json" Version="0.4.0" />
+    <PackageReference Include="Ply" Version="0.3.1" />
   </ItemGroup>
 
 </Project>
