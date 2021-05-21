@@ -22,10 +22,10 @@ module ArangoDB =
 
     type QueryResult<'T> = { Id: string option; Result: 'T list }
 
-    type SearchLinks = { IncludeAllFields: bool }
+    type SearchLinkOptions = { IncludeAllFields: bool }
 
     type SearchOptions =
-        { Links: Map<string, SearchLinks>
+        { Links: Map<string, SearchLinkOptions>
           Name: string option
           Type: string }
 
@@ -70,6 +70,8 @@ module ArangoDB =
         { BatchSize = 32
           BindVars = Map.empty<string, _>
           Query = None }
+
+    let SearchLinkOptions = { IncludeAllFields = false }
 
     let SearchOptions =
         { Links = Map.empty<string, _>
