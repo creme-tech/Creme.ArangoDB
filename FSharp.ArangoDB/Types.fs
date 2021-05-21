@@ -1,44 +1,112 @@
 ﻿namespace FSharp.ArangoDB
 
-module Types =
-    open FSharp.Json
+module ArangoDB =
     open System.Net.Http
 
-    type CollectionKeyOptions =
-        { [<JsonField "type">]
-          _type: string }
+    type CollectionKeyOptions = { Type: string }
 
     type CollectionOptions =
-        { name: string option
-          keyOptions: CollectionKeyOptions
-          [<JsonField "type">]
-          _type: int }
+        { Name: string option
+          KeyOptions: CollectionKeyOptions
+          Type: int }
 
     type IndexOptions =
-        { fields: string list
-          [<JsonField "type">]
-          _type: string
-          unique: bool }
+        { Fields: string list
+          Type: string
+          Unique: bool }
 
     type Query<'T> =
-        { batchSize: int
-          bindVars: Map<string, 'T>
-          query: string option }
+        { BatchSize: int
+          BindVars: Map<string, 'T>
+          Query: string option }
 
-    type QueryResult<'T> = { id: string option; result: 'T }
+    type QueryResult<'T> = { Id: string option; Result: 'T list }
 
-    type SearchLinks = { includeAllFields: bool }
+    type SearchLinks = { IncludeAllFields: bool }
 
     type SearchOptions =
-        { links: Map<string, SearchLinks>
-          name: string option
-          [<JsonField "type">]
-          _type: string }
+        { Links: Map<string, SearchLinks>
+          Name: string option
+          Type: string }
 
     type Client =
-        { authorization: string
-          client: HttpClient
-          database: string
-          debug: bool
-          host: string
-          target: string }
+        { Authorization: string
+          Client: HttpClient
+          Database: string
+          Debug: bool
+          Host: string
+          Target: string }
+
+    (* Options *)
+
+    let KeyTypeAutoIncrement = "AutoIncrement".ToLower()
+
+    let KeyTypePadded = "Padded".ToLower()
+    let KeyTypeTraditional = "Traditional".ToLower()
+    let KeyTypeUUID = "UUID".ToLower()
+
+    let DocumentCollection = 2
+    let EdgeCollection = 3
+
+    let PersistentIndex = "Persistent".ToLower()
+
+    let SearchView = "ArangoSearch".ToLower()
+
+    (* Default options *)
+
+    let CollectionKeyOptions = { Type = KeyTypeUUID }
+
+    let CollectionOptions =
+        { KeyOptions = CollectionKeyOptions
+          Name = None
+          Type = DocumentCollection }
+
+    let IndexOptions =
+        { Fields = []
+          Type = PersistentIndex
+          Unique = true }
+
+    let QueryOptions =
+        { BatchSize = 32
+          BindVars = Map.empty<string, _>
+          Query = None }
+
+    let SearchOptions =
+        { Links = Map.empty<string, _>
+          Name = None
+          Type = SearchView }
+
+    (* Status *)
+
+    let (|OK|Error|) (status, response) =
+        if status <> 200 && status <> 201 then
+            Error status
+        else
+            OK(Option.get response)
+
+    [<Literal>]
+    let BadRequest = 400
+
+    [<Literal>]
+    let NotFound = 404
+
+    [<Literal>]
+    let MethodNotAllowed = 405
+
+    [<Literal>]
+    let Conflict = 409
+
+    [<Literal>]
+    let LengthRequired = 411
+
+    [<Literal>]
+    let PayloadTooLarge = 413
+
+    [<Literal>]
+    let URITooLong = 414
+
+    [<Literal>]
+    let RequestHeaderFieldsTooLarge = 431
+
+    [<Literal>]
+    let HTTPVersionNotSupported = 505
