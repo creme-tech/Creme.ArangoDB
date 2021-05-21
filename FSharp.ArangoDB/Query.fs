@@ -16,11 +16,11 @@ module internal Query' =
             let! rows =
                 task {
                     if status <> 201 then
-                        return None
+                        return { Id = None; Result = [] }
                     else
                         let! object = response.Content |> deserialize<QueryResult<'T>>
 
-                        return Some object
+                        return  object
                 }
 
             return status, rows
@@ -35,11 +35,11 @@ module internal Query' =
             let! rows =
                 task {
                     if status <> 200 then
-                        return None
+                        return { Id = None; Result = [] }
                     else
                         let! object = response.Content |> deserialize<QueryResult<'T>>
 
-                        return Some object
+                        return object
                 }
 
             return status, rows
