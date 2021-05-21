@@ -17,5 +17,5 @@ module internal Index =
                     serialize record
                 )
 
-            return int response.StatusCode, None
+            return int response.StatusCode, { Id = None; Result = [] }
         }
