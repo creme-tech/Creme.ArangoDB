@@ -9,6 +9,9 @@ module ArangoClient =
     let GetCollection = Collection.GetCollection
     let CreateCollection = Collection.CreateCollection
 
+    let GetAccessibleDatabases = Database.GetAccessibleDatabases
+    let CreateDatabase = Database.CreateDatabase
+
     let CreateIndex = Index.CreateIndex
 
     let GetSearch = Search.GetSearch

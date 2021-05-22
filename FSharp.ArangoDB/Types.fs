@@ -10,6 +10,8 @@ module ArangoDB =
           KeyOptions: CollectionKeyOptions
           Type: int }
 
+    type DatabaseOptions = { Name: string option }
+
     type IndexOptions =
         { Fields: string list
           Type: string
