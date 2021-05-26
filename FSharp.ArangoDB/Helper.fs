@@ -1,6 +1,6 @@
 ﻿namespace FSharp.ArangoDB
 
-module Helper =
+module internal Helper =
     open ArangoDB
     open Client
 
@@ -11,7 +11,7 @@ module Helper =
     open System.Text
 
     let private JsonConfig =
-        JsonConfig.create (unformatted = false, jsonFieldNaming = Json.lowerCamelCase)
+        JsonConfig.create (unformatted = true, jsonFieldNaming = Json.lowerCamelCase)
 
     let deserialize<'T> (content: HttpContent) =
         task {
