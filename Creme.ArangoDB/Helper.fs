@@ -1,17 +1,17 @@
-﻿namespace FSharp.ArangoDB
+﻿namespace Creme.ArangoDB
 
 module internal Helper =
     open ArangoDB
     open Client
 
+    open Creme.Json
     open Flurl
     open FSharp.Control.Tasks
-    open FSharp.Json
     open System.Net.Http
     open System.Text
 
     let private JsonConfig =
-        JsonConfig.create (unformatted = true, jsonFieldNaming = Json.lowerCamelCase)
+        JsonConfig.create (Unformatted = true, JsonFieldNaming = Json.CamelCase)
 
     let deserialize<'T> (content: HttpContent) =
         task {
@@ -20,7 +20,7 @@ module internal Helper =
             if defaultConfig.Debug then
                 printfn "Deserialized payload: %s" payload
 
-            return Json.deserializeEx<'T> JsonConfig payload
+            return Json.DeserializeEx<'T> JsonConfig payload
         }
 
     let internal EmptyQueryResult = { Id = None; Result = [] }
@@ -29,7 +29,7 @@ module internal Helper =
         Url.Combine(action |> Array.append [| defaultConfig.Target |])
 
     let serialize record =
-        let payload = Json.serializeEx JsonConfig record
+        let payload = Json.SerializeEx JsonConfig record
 
         if defaultConfig.Debug then
             printfn "Serialized payload: %s" payload

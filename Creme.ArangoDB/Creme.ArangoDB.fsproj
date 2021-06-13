@@ -5,11 +5,11 @@
     <Description>A consistent and minimal F# driver for ArangoDB</Description>
     <Authors>Weslen Guerreiro</Authors>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/nglabo/FSharp.ArangoDB</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/nglabo/Creme.ArangoDB</PackageProjectUrl>
     <Copyright>Copyright 2021</Copyright>
-    <RepositoryUrl>https://github.com/nglabo/FSharp.ArangoDB</RepositoryUrl>
+    <RepositoryUrl>https://github.com/nglabo/Creme.ArangoDB</RepositoryUrl>
     <PackageTags>ArangoDB Driver F# FSharp</PackageTags>
-    <Version>0.1.0-alpha29</Version>
+    <Version>0.1.0-alpha30</Version>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
@@ -26,9 +26,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Flurl" Version="3.0.1" />
-    <PackageReference Include="FSharp.Json" Version="0.4.0" />
+    <PackageReference Include="Creme.Json" Version="0.1.0-alpha03" />
+    <PackageReference Include="Flurl" Version="3.0.2" />
     <PackageReference Include="Ply" Version="0.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="5.0.1" />
   </ItemGroup>
 
 </Project>

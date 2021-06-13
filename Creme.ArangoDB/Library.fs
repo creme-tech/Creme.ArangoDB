@@ -1,9 +1,6 @@
-﻿namespace FSharp.ArangoDB
+﻿namespace Creme.ArangoDB
 
 module ArangoClient =
-
-    (* Client *)
-
     let SetConfig = Client.SetConfig
 
     let GetCollection = Collection.GetCollection
