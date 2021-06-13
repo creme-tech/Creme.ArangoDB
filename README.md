@@ -1,10 +1,10 @@
-# FSharp.ArangoDB
+# Creme.ArangoDB
 
-FSharp.ArangoDB is a ArangoDB driver for F# focused on consistency and minimalism
+Creme.ArangoDB is a ArangoDB driver for F# focused on consistency and minimalism
 
 ⚠️ This project is in alpha release  
 
-[![NuGet Info](https://buildstats.info/nuget/FSharp.ArangoDB?includePreReleases=true)](https://www.nuget.org/packages/FSharp.ArangoDB)
+[![NuGet Info](https://buildstats.info/nuget/Creme.ArangoDB?includePreReleases=true)](https://www.nuget.org/packages/Creme.ArangoDB)
 
 ## License
 

@@ -1,4 +1,4 @@
-﻿namespace FSharp.ArangoDB
+﻿namespace Creme.ArangoDB
 
 module internal Index =
     open ArangoDB
