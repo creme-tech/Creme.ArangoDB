@@ -28,8 +28,10 @@ module internal Database =
             return status, rows
         }
 
-    let CreateDatabase (record: DatabaseOptions) =
+    let CreateDatabase record =
         task {
+            let record : DatabaseOptions = record
+
             let! response = defaultConfig.Client.PostAsync(host [| "_api"; "database" |], serialize record)
 
             return int response.StatusCode, EmptyQueryResult

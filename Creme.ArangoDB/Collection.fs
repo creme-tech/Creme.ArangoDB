@@ -15,8 +15,10 @@ module internal Collection =
         }
 
 
-    let CreateCollection (record: CollectionOptions) =
+    let CreateCollection record =
         task {
+            let record : CollectionOptions = record
+
             let! response = defaultConfig.Client.PostAsync(host [| "_api"; "collection" |], serialize record)
 
             return int response.StatusCode, EmptyQueryResult

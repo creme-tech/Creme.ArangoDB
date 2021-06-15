@@ -25,6 +25,8 @@ module internal Helper =
 
     let internal EmptyQueryResult = { Id = None; Result = [] }
 
+    let internal EmptyTransactionResult = { result = { Id = "#"; status = "#" } }
+
     let host action =
         Url.Combine(action |> Array.append [| defaultConfig.Target |])
 

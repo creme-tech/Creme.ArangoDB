@@ -9,7 +9,7 @@
     <Copyright>Copyright 2021</Copyright>
     <RepositoryUrl>https://github.com/creme-tech/Creme.ArangoDB</RepositoryUrl>
     <PackageTags>ArangoDB Driver F# FSharp</PackageTags>
-    <Version>0.1.0-alpha32</Version>
+    <Version>0.1.0-alpha34</Version>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
@@ -20,8 +20,9 @@
     <Compile Include="Collection.fs" />
     <Compile Include="Database.fs" />
     <Compile Include="Index.fs" />
-    <Compile Include="Search.fs" />
     <Compile Include="Query.fs" />
+    <Compile Include="Search.fs" />
+    <Compile Include="Transaction.fs" />
     <Compile Include="Library.fs" />
   </ItemGroup>
 

@@ -20,7 +20,8 @@ module ArangoDB =
     type Query<'T> =
         { BatchSize: int
           BindVars: Map<string, 'T>
-          Query: string option }
+          Query: string option
+          TransactionId: string option }
 
     type QueryResult<'T> = { Id: string option; Result: 'T list }
 
@@ -30,6 +31,23 @@ module ArangoDB =
         { Links: Map<string, SearchLinkOptions>
           Name: string option
           Type: string }
+
+    type TransactionSubAttribute =
+        | Read
+        | Write
+        | Exclusive
+
+    type TransactionAttribute = TransactionSubAttribute * string list
+
+    type TransactionOptions =
+        { Collections: TransactionAttribute list }
+
+    type TransactionPayload =
+        { Collections: Map<string, string list> }
+
+    type TransactionResult = { Id: string; status: string }
+
+    type TransactionResponse = { result: TransactionResult }
 
     type Client =
         { Authorization: string
@@ -71,7 +89,8 @@ module ArangoDB =
     let QueryOptions =
         { BatchSize = 32
           BindVars = Map.empty<string, _>
-          Query = None }
+          Query = None
+          TransactionId = None }
 
     let SearchLinkOptions = { IncludeAllFields = false }
 
@@ -79,6 +98,8 @@ module ArangoDB =
         { Links = Map.empty<string, _>
           Name = None
           Type = SearchView }
+
+    let TransactionOptions : TransactionOptions = { Collections = [] }
 
     (* Status *)
 

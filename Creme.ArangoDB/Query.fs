@@ -7,9 +7,15 @@ module internal Query' =
 
     open FSharp.Control.Tasks
 
-    let Query<'T> (record: Query<_>) =
+    let Query<'T> record =
         task {
-            let! response = defaultConfig.Client.PostAsync(host [| "_api"; "cursor" |], serialize record)
+            let content = serialize record
+
+            match record.TransactionId with
+            | Some transactionId -> content.Headers.Add("X-Arango-TRX-Id", transactionId)
+            | None -> None |> ignore
+
+            let! response = defaultConfig.Client.PostAsync(host [| "_api"; "cursor" |], content)
 
             let status = int response.StatusCode
 
@@ -26,9 +32,15 @@ module internal Query' =
             return status, rows
         }
 
-    let QueryNext<'T> cursorId (record: Query<_>) =
+    let QueryNext<'T> cursorId record =
         task {
-            let! response = defaultConfig.Client.PutAsync(host [| "_api"; "cursor"; cursorId |], serialize record)
+            let content = serialize record
+
+            match record.TransactionId with
+            | Some transactionId -> content.Headers.Add("X-Arango-TRX-Id", transactionId)
+            | None -> None |> ignore
+
+            let! response = defaultConfig.Client.PutAsync(host [| "_api"; "cursor"; cursorId |], content)
 
             let status = int response.StatusCode
 

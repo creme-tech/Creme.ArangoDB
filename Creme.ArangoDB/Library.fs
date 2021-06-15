@@ -11,8 +11,12 @@ module ArangoClient =
 
     let CreateIndex = Index.CreateIndex
 
+    let Query<'T> = Query'.Query<'T>
+    let QueryNext<'T> = Query'.QueryNext<'T>
+
     let GetSearch = Search.GetSearch
     let CreateSearch = Search.CreateSearch
 
-    let Query<'T> = Query'.Query<'T>
-    let QueryNext<'T> = Query'.QueryNext<'T>
+    let BeginTransaction = Transaction.BeginTransaction
+    let AbortTransaction = Transaction.AbortTransaction
+    let CommitTransaction = Transaction.CommitTransaction
