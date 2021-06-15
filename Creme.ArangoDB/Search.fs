@@ -13,8 +13,10 @@ module internal Search =
             return int response.StatusCode, EmptyQueryResult
         }
 
-    let CreateSearch (record: SearchOptions) =
+    let CreateSearch record =
         task {
+            let record : SearchOptions = record
+
             let! response = defaultConfig.Client.PostAsync(host [| "_api"; "view#arangosearch" |], serialize record)
 
             return int response.StatusCode, EmptyQueryResult
