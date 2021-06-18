@@ -46,7 +46,7 @@ module internal Query' =
 
             let! rows =
                 task {
-                    if status <> 200 then
+                    if status = 201 then
                         let! object = response.Content |> deserialize<QueryResult<'T>>
 
                         return object
