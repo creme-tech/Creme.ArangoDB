@@ -26,7 +26,7 @@ module internal Query' =
 
                         return object
                     else
-                        return EmptyQueryResult
+                        return emptyQueryResult
                 }
 
             return status, rows
@@ -51,7 +51,7 @@ module internal Query' =
 
                         return object
                     else
-                        return EmptyQueryResult
+                        return emptyQueryResult
                 }
 
             return status, rows

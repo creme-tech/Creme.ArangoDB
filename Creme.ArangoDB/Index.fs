@@ -9,7 +9,7 @@ module internal Index =
 
     let CreateIndex collectionName record =
         task {
-            let record : IndexOptions = record
+            let record: IndexOptions = record
 
             let host =
                 host [| "_api"
@@ -18,5 +18,5 @@ module internal Index =
 
             let! response = defaultConfig.Client.PostAsync(host, serialize record)
 
-            return int response.StatusCode, EmptyQueryResult
+            return int response.StatusCode, emptyQueryResult
         }

@@ -45,9 +45,9 @@ module ArangoDB =
     type TransactionPayload =
         { Collections: Map<string, string list> }
 
-    type TransactionResult = { Id: string; status: string }
+    type TransactionResult = { Id: string; Status: string }
 
-    type TransactionResponse = { result: TransactionResult }
+    type TransactionResponse = { Result: TransactionResult }
 
     type Client =
         { Authorization: string
@@ -74,7 +74,7 @@ module ArangoDB =
 
     (* Default options *)
 
-    let CollectionKeyOptions = { Type = KeyTypeUUID }
+    let CollectionKeyOptions = { Type = KeyTypePadded }
 
     let CollectionOptions =
         { KeyOptions = CollectionKeyOptions
@@ -99,7 +99,7 @@ module ArangoDB =
           Name = None
           Type = SearchView }
 
-    let TransactionOptions : TransactionOptions = { Collections = [] }
+    let TransactionOptions: TransactionOptions = { Collections = [] }
 
     (* Status *)
 
