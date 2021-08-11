@@ -22,7 +22,7 @@ module internal Database =
 
                         return object
                     else
-                        return EmptyQueryResult
+                        return emptyQueryResult
                 }
 
             return status, rows
@@ -30,9 +30,9 @@ module internal Database =
 
     let CreateDatabase record =
         task {
-            let record : DatabaseOptions = record
+            let record: DatabaseOptions = record
 
             let! response = defaultConfig.Client.PostAsync(host [| "_api"; "database" |], serialize record)
 
-            return int response.StatusCode, EmptyQueryResult
+            return int response.StatusCode, emptyQueryResult
         }

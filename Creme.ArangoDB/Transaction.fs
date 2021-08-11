@@ -8,7 +8,7 @@ module internal Transaction =
 
     let BeginTransaction record =
         task {
-            let record : TransactionOptions = record
+            let record: TransactionOptions = record
 
             let host =
                 host [| "_api"
@@ -35,7 +35,7 @@ module internal Transaction =
 
                         return object
                     else
-                        return EmptyTransactionResult
+                        return emptyTransactionResult
                 }
 
             return status, rows
@@ -50,7 +50,7 @@ module internal Transaction =
 
             let! response = defaultConfig.Client.DeleteAsync host
 
-            return int response.StatusCode, EmptyTransactionResult
+            return int response.StatusCode, emptyTransactionResult
         }
 
     let CommitTransaction transactionId =
@@ -62,5 +62,5 @@ module internal Transaction =
 
             let! response = defaultConfig.Client.PutAsync(host, null)
 
-            return int response.StatusCode, EmptyTransactionResult
+            return int response.StatusCode, emptyTransactionResult
         }
