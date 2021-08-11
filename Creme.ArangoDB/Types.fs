@@ -74,7 +74,7 @@ module ArangoDB =
 
     (* Default options *)
 
-    let CollectionKeyOptions = { Type = KeyTypePadded }
+    let CollectionKeyOptions = { Type = KeyTypeUUID }
 
     let CollectionOptions =
         { KeyOptions = CollectionKeyOptions
