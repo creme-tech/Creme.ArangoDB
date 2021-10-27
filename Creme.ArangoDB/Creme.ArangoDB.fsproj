@@ -9,7 +9,7 @@
     <Copyright>Copyright 2021</Copyright>
     <RepositoryUrl>https://github.com/nglabo/Creme.ArangoDB</RepositoryUrl>
     <PackageTags>ArangoDB Driver F# FSharp</PackageTags>
-    <Version>0.1.0-alpha42</Version>
+    <Version>0.1.0-alpha46</Version>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
@@ -28,12 +28,12 @@
 
   <ItemGroup>
     <PackageReference Include="Flurl" Version="3.0.2" />
-    <PackageReference Include="FSharp.Json" Version="0.4.0" />
+    <PackageReference Include="FSharp.Json" Version="0.4.1" />
     <PackageReference Include="Ply" Version="0.3.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Update="FSharp.Core" Version="5.0.2" />
+    <PackageReference Update="FSharp.Core" Version="6.0.0" />
   </ItemGroup>
 
 </Project>

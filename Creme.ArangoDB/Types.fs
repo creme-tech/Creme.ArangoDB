@@ -14,6 +14,7 @@ module ArangoDB =
 
     type IndexOptions =
         { Fields: string list
+          ExpireAfter: int option
           Type: string
           Unique: bool }
 
@@ -69,6 +70,7 @@ module ArangoDB =
     let EdgeCollection = 3
 
     let PersistentIndex = "Persistent".ToLower()
+    let TTLIndex = "TTL".ToLower()
 
     let SearchView = "ArangoSearch".ToLower()
 
@@ -83,6 +85,7 @@ module ArangoDB =
 
     let IndexOptions =
         { Fields = []
+          ExpireAfter = None
           Type = PersistentIndex
           Unique = true }
 
