@@ -5,9 +5,9 @@
     <Description>A consistent and minimal F# driver for ArangoDB</Description>
     <Authors>Weslen Guerreiro</Authors>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/nglabo/Creme.ArangoDB</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/omppye-lab/Creme.ArangoDB</PackageProjectUrl>
     <Copyright>Copyright 2021</Copyright>
-    <RepositoryUrl>https://github.com/nglabo/Creme.ArangoDB</RepositoryUrl>
+    <RepositoryUrl>https://github.com/omppye-lab/Creme.ArangoDB</RepositoryUrl>
     <PackageTags>ArangoDB Driver F# FSharp</PackageTags>
     <Version>0.1.0-alpha48</Version>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
