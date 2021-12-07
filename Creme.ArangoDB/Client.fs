@@ -9,9 +9,9 @@ module internal Client =
 
     let mutable defaultConfig =
         { Authorization = "Basic cm9vdDpyb290"
-          Client = new HttpClient(DefaultRequestVersion = Version(2, 0))
+          Client = new HttpClient(DefaultRequestVersion = Version(1, 1))
           Database = "_system"
-          Debug = false
+          Debug = true
           Host = "http://127.0.0.1:8529/"
           Target = "http://127.0.0.1:8529/_db/_system" }
 
