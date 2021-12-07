@@ -10,12 +10,32 @@ module internal Query' =
             let content = serialize record
 
             match record.TransactionId with
-            | Some transactionId -> content.Headers.Add("X-Arango-TRX-Id", transactionId)
-            | None -> None |> ignore
+            | Some transactionId ->
+                if defaultConfig.Debug then
+                    printfn "Transaction: %s" transactionId
 
-            let! response = defaultConfig.Client.PostAsync(host [| "_api"; "cursor" |], content)
+                content.Headers.Add("X-Arango-TRX-Id", transactionId)
+            | None ->
+                if defaultConfig.Debug then
+                    printfn "Running with no transaction"
+
+                None |> ignore
+
+            let url = host [| "_api"; "cursor" |]
+
+            if defaultConfig.Debug then
+                printfn "URL: %s" url
+
+            if defaultConfig.Debug then
+                defaultConfig.Client.DefaultRequestHeaders.ToString()
+                |> printfn "Request headers: %s"
+
+            let! response = defaultConfig.Client.PostAsync(url, content)
 
             let status = int response.StatusCode
+
+            if defaultConfig.Debug then
+                printfn "Response code received: %d" status
 
             let! rows =
                 task {
@@ -35,12 +55,32 @@ module internal Query' =
             let content = serialize record
 
             match record.TransactionId with
-            | Some transactionId -> content.Headers.Add("X-Arango-TRX-Id", transactionId)
-            | None -> None |> ignore
+            | Some transactionId ->
+                if defaultConfig.Debug then
+                    printfn "Transaction: %s" transactionId
 
-            let! response = defaultConfig.Client.PutAsync(host [| "_api"; "cursor"; cursorId |], content)
+                content.Headers.Add("X-Arango-TRX-Id", transactionId)
+            | None ->
+                if defaultConfig.Debug then
+                    printfn "Running with no transaction"
+
+                None |> ignore
+
+            let url = host [| "_api"; "cursor"; cursorId |]
+
+            if defaultConfig.Debug then
+                printfn "URL: %s" url
+
+            if defaultConfig.Debug then
+                defaultConfig.Client.DefaultRequestHeaders.ToString()
+                |> printfn "Request headers: %s"
+
+            let! response = defaultConfig.Client.PutAsync(url, content)
 
             let status = int response.StatusCode
+
+            if defaultConfig.Debug then
+                printfn "Response code received: %d" status
 
             let! rows =
                 task {
