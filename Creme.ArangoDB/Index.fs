@@ -5,8 +5,6 @@ module internal Index =
     open Client
     open Helper
 
-    open FSharp.Control.Tasks
-
     let CreateIndex collectionName record =
         task {
             let record: IndexOptions = record

@@ -5,8 +5,6 @@ module internal Collection =
     open Client
     open Helper
 
-    open FSharp.Control.Tasks
-
     let GetCollection name =
         task {
             let! response = defaultConfig.Client.GetAsync(host [| "_api"; "collection"; name |])

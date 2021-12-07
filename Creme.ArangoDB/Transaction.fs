@@ -4,7 +4,6 @@ module internal Transaction =
     open ArangoDB
     open Client
     open Helper
-    open FSharp.Control.Tasks
 
     let BeginTransaction record =
         task {

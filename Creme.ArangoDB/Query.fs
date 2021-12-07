@@ -5,8 +5,6 @@ module internal Query' =
     open Client
     open Helper
 
-    open FSharp.Control.Tasks
-
     let Query<'T> record =
         task {
             let content = serialize record

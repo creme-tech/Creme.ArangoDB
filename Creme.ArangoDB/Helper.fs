@@ -5,7 +5,6 @@ module internal Helper =
     open Client
 
     open Flurl
-    open FSharp.Control.Tasks
     open FSharp.Json
     open System.Net.Http
     open System.Text
