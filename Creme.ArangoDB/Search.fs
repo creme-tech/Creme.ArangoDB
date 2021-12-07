@@ -4,7 +4,6 @@ module internal Search =
     open ArangoDB
     open Client
     open Helper
-    open FSharp.Control.Tasks
 
     let GetSearch name =
         task {

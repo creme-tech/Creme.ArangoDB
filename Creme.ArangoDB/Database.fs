@@ -5,8 +5,6 @@ module internal Database =
     open Client
     open Helper
 
-    open FSharp.Control.Tasks
-
     let GetAccessibleDatabases () =
         task {
             let! response = defaultConfig.Client.GetAsync(host [| "_api"; "database"; "user" |])
