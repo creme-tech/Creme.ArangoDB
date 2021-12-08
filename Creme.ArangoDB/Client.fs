@@ -7,9 +7,25 @@ module internal Client =
     open System
     open System.Net.Http
 
+    let internal httpHandler =
+        let handler = new SocketsHttpHandler()
+
+        handler.ConnectTimeout <- TimeSpan.FromSeconds 32
+        handler.MaxConnectionsPerServer <- 32
+        handler.PooledConnectionLifetime <- TimeSpan.FromMinutes(16)
+        handler.PooledConnectionIdleTimeout <- TimeSpan.FromMinutes(4)
+        handler
+
+    let internal httpClient =
+        let client = new HttpClient(httpHandler)
+
+        (* TODO: Check if HTTP/2.0 has some connection error with ArangoDB *)
+        client.DefaultRequestVersion <- Version(1, 1)
+        client
+
     let mutable defaultConfig =
         { Authorization = "Basic cm9vdDpyb290"
-          Client = new HttpClient(DefaultRequestVersion = Version(1, 1))
+          Client = httpClient
           Database = "_system"
           Debug = true
           Host = "http://127.0.0.1:8529/"
