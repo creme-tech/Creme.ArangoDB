@@ -5,6 +5,7 @@ module internal Client =
 
     open Flurl
     open System
+    open System.Net
     open System.Net.Http
 
     let internal httpHandler =
@@ -20,7 +21,8 @@ module internal Client =
         let client = new HttpClient(httpHandler)
 
         (* TODO: Check if HTTP/2.0 has some connection error with ArangoDB *)
-        client.DefaultRequestVersion <- Version(1, 1)
+        client.DefaultRequestVersion <- HttpVersion.Version11
+        client.DefaultVersionPolicy <- HttpVersionPolicy.RequestVersionOrHigher
         client
 
     let mutable defaultConfig =
@@ -38,9 +40,6 @@ module internal Client =
             { defaultConfig with
                   Authorization = config.Authorization
                   Client =
-                      config.Client.DefaultRequestHeaders.Remove("Authorization")
-                      |> ignore
-
                       config.Client.DefaultRequestHeaders.Add("Authorization", config.Authorization)
                       config.Client
 
