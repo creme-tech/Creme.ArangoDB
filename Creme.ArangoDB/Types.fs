@@ -18,14 +18,9 @@ module ArangoDB =
           Type: string
           Unique: bool }
 
-    type QueryOptionsOptimizer = { Rules: string list }
-
-    type QueryOptions = { Optimizer: QueryOptionsOptimizer }
-
     type Query<'T> =
         { BatchSize: int
           BindVars: Map<string, 'T>
-          Options: QueryOptions
           Query: string option
           TransactionId: string option
           TTL: int }
@@ -66,19 +61,18 @@ module ArangoDB =
 
     (* Options *)
 
-    let KeyTypeAutoIncrement = "AutoIncrement".ToLower()
-
-    let KeyTypePadded = "Padded".ToLower()
-    let KeyTypeTraditional = "Traditional".ToLower()
-    let KeyTypeUUID = "UUID".ToLower()
+    let KeyTypeAutoIncrement = "autoincrement"
+    let KeyTypePadded = "padded"
+    let KeyTypeTraditional = "traditional"
+    let KeyTypeUUID = "uuid"
 
     let DocumentCollection = 2
     let EdgeCollection = 3
 
-    let PersistentIndex = "Persistent".ToLower()
-    let TTLIndex = "TTL".ToLower()
+    let PersistentIndex = "persistent"
+    let TTLIndex = "ttl"
 
-    let SearchView = "ArangoSearch".ToLower()
+    let SearchView = "arangosearch"
 
     (* Default options *)
 
@@ -98,10 +92,9 @@ module ArangoDB =
     let QueryOptions =
         { BatchSize = 32
           BindVars = Map.empty<string, _>
-          Options = { Optimizer = { Rules = [ "-all" ] } }
           Query = None
           TransactionId = None
-          TTL = 30 }
+          TTL = 32 }
 
     let SearchLinkOptions = { IncludeAllFields = false }
 
