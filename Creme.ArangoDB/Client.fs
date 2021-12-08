@@ -32,11 +32,21 @@ module internal Client =
           Target = "http://127.0.0.1:8529/_db/_system" }
 
     let SetConfig (setter: Client -> Client) =
-        let next = setter defaultConfig
+        let config = setter defaultConfig
 
-        defaultConfig.Client.DefaultRequestHeaders.Clear()
-        defaultConfig.Client.DefaultRequestHeaders.Add("Authorization", next.Authorization)
+        let config =
+            { defaultConfig with
+                  Authorization = config.Authorization
+                  Client =
+                      config.Client.DefaultRequestHeaders.Remove("Authorization")
+                      |> ignore
 
-        defaultConfig <-
-            { next with
-                  Target = Url.Combine(next.Host, "_db", next.Database) }
+                      config.Client.DefaultRequestHeaders.Add("Authorization", config.Authorization)
+                      config.Client
+
+                  Database = config.Database
+                  Debug = config.Debug
+                  Host = config.Host
+                  Target = Url.Combine(config.Host, "_db", config.Database) }
+
+        defaultConfig <- config
