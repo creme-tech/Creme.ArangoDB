@@ -85,7 +85,7 @@ module ArangoDB =
     let CollectionOptions =
         { KeyOptions = CollectionKeyOptions
           Name = None
-          ReplicationFactor = 2
+          ReplicationFactor = 3
           Type = DocumentCollection }
 
     let IndexOptions =
