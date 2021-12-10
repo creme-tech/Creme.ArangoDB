@@ -8,6 +8,7 @@ module ArangoDB =
     type CollectionOptions =
         { Name: string option
           KeyOptions: CollectionKeyOptions
+          ReplicationFactor: int
           Type: int }
 
     type DatabaseOptions = { Name: string option }
@@ -64,18 +65,18 @@ module ArangoDB =
 
     (* Options *)
 
-    let KeyTypeAutoIncrement = "autoincrement"
-    let KeyTypePadded = "padded"
-    let KeyTypeTraditional = "traditional"
-    let KeyTypeUUID = "uuid"
+    let KeyTypeAutoIncrement = "AutoIncrement".ToLower()
+    let KeyTypePadded = "Padded".ToLower()
+    let KeyTypeTraditional = "Traditional".ToLower()
+    let KeyTypeUUID = "UUID".ToLower()
 
     let DocumentCollection = 2
     let EdgeCollection = 3
 
-    let PersistentIndex = "persistent"
-    let TTLIndex = "ttl"
+    let PersistentIndex = "Persistent".ToLower()
+    let TTLIndex = "TTL"
 
-    let SearchView = "arangosearch"
+    let SearchView = "ArangoSearch".ToLower()
 
     (* Default options *)
 
@@ -84,6 +85,7 @@ module ArangoDB =
     let CollectionOptions =
         { KeyOptions = CollectionKeyOptions
           Name = None
+          ReplicationFactor = 2
           Type = DocumentCollection }
 
     let IndexOptions =
