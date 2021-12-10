@@ -18,9 +18,12 @@ module ArangoDB =
           Type: string
           Unique: bool }
 
+    type QueryOptions = { Stream: bool }
+
     type Query<'T> =
         { BatchSize: int
           BindVars: Map<string, 'T>
+          Options: QueryOptions
           Query: string option
           TransactionId: string option
           TTL: int }
@@ -92,6 +95,7 @@ module ArangoDB =
     let QueryOptions =
         { BatchSize = 32
           BindVars = Map.empty<string, _>
+          Options = { Stream = true }
           Query = None
           TransactionId = None
           TTL = 32 }
