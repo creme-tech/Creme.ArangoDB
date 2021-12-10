@@ -93,12 +93,12 @@ module ArangoDB =
           Unique = true }
 
     let QueryOptions =
-        { BatchSize = 32
+        { BatchSize = 30
           BindVars = Map.empty<string, _>
           Options = { Stream = true }
           Query = None
           TransactionId = None
-          TTL = 32 }
+          TTL = 30 }
 
     let SearchLinkOptions = { IncludeAllFields = false }
 
