@@ -49,7 +49,7 @@ module internal Transaction =
 
             let! response = defaultConfig.Client.DeleteAsync host
 
-            return int response.StatusCode, emptyTransactionResult
+            return int response.StatusCode
         }
 
     let CommitTransaction transactionId =

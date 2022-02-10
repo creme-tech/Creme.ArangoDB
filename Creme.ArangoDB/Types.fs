@@ -8,7 +8,6 @@ module ArangoDB =
     type CollectionOptions =
         { Name: string option
           KeyOptions: CollectionKeyOptions
-          ReplicationFactor: int
           Type: int }
 
     type DatabaseOptions = { Name: string option }
@@ -19,12 +18,9 @@ module ArangoDB =
           Type: string
           Unique: bool }
 
-    type QueryOptions = { Stream: bool }
-
     type Query<'T> =
         { BatchSize: int
           BindVars: Map<string, 'T>
-          Options: QueryOptions
           Query: string option
           TransactionId: string option
           TTL: int }
@@ -65,18 +61,18 @@ module ArangoDB =
 
     (* Options *)
 
-    let KeyTypeAutoIncrement = "AutoIncrement".ToLower()
-    let KeyTypePadded = "Padded".ToLower()
-    let KeyTypeTraditional = "Traditional".ToLower()
-    let KeyTypeUUID = "UUID".ToLower()
+    let KeyTypeAutoIncrement = "autoincrement"
+    let KeyTypePadded = "padded"
+    let KeyTypeTraditional = "traditional"
+    let KeyTypeUUID = "uuid"
 
     let DocumentCollection = 2
     let EdgeCollection = 3
 
-    let PersistentIndex = "Persistent".ToLower()
-    let TTLIndex = "TTL"
+    let PersistentIndex = "persistent"
+    let TTLIndex = "ttl"
 
-    let SearchView = "ArangoSearch".ToLower()
+    let SearchView = "arangosearch"
 
     (* Default options *)
 
@@ -85,7 +81,6 @@ module ArangoDB =
     let CollectionOptions =
         { KeyOptions = CollectionKeyOptions
           Name = None
-          ReplicationFactor = 3
           Type = DocumentCollection }
 
     let IndexOptions =
@@ -97,7 +92,6 @@ module ArangoDB =
     let QueryOptions =
         { BatchSize = 30
           BindVars = Map.empty<string, _>
-          Options = { Stream = true }
           Query = None
           TransactionId = None
           TTL = 30 }

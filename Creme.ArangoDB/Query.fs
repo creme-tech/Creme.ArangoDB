@@ -44,6 +44,11 @@ module internal Query' =
 
                         return object
                     else
+                        let! _ =
+                            match record.TransactionId with
+                            | Some transactionId -> Transaction.AbortTransaction transactionId
+                            | None -> task { return 200 }
+
                         return emptyQueryResult
                 }
 
@@ -89,6 +94,11 @@ module internal Query' =
 
                         return object
                     else
+                        let! _ =
+                            match record.TransactionId with
+                            | Some transactionId -> Transaction.AbortTransaction transactionId
+                            | None -> task { return 200 }
+
                         return emptyQueryResult
                 }
 

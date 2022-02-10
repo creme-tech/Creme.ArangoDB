@@ -18,5 +18,4 @@ module ArangoClient =
     let CreateSearch = Search.CreateSearch
 
     let BeginTransaction = Transaction.BeginTransaction
-    let AbortTransaction = Transaction.AbortTransaction
     let CommitTransaction = Transaction.CommitTransaction
