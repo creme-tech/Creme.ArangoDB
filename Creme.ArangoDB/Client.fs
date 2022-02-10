@@ -11,10 +11,10 @@ module internal Client =
     let internal httpHandler =
         let handler = new SocketsHttpHandler()
 
-        handler.ConnectTimeout <- TimeSpan.FromSeconds 32
-        handler.MaxConnectionsPerServer <- 32
-        handler.PooledConnectionLifetime <- TimeSpan.FromMinutes(16)
-        handler.PooledConnectionIdleTimeout <- TimeSpan.FromMinutes(4)
+        handler.ConnectTimeout <- TimeSpan.FromSeconds 30
+        handler.MaxConnectionsPerServer <- 30
+        handler.PooledConnectionLifetime <- TimeSpan.FromMinutes(15)
+        handler.PooledConnectionIdleTimeout <- TimeSpan.FromMinutes(5)
         handler
 
     let internal httpClient =
