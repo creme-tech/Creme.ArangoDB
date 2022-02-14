@@ -38,14 +38,14 @@ module internal Client =
 
         let config =
             { defaultConfig with
-                  Authorization = config.Authorization
-                  Client =
-                      config.Client.DefaultRequestHeaders.Add("Authorization", config.Authorization)
-                      config.Client
+                Authorization = config.Authorization
+                Client =
+                    config.Client.DefaultRequestHeaders.Add("Authorization", config.Authorization)
+                    config.Client
 
-                  Database = config.Database
-                  Debug = config.Debug
-                  Host = config.Host
-                  Target = Url.Combine(config.Host, "_db", config.Database) }
+                Database = config.Database
+                Debug = config.Debug
+                Host = config.Host
+                Target = Url.Combine(config.Host, "_db", config.Database) }
 
         defaultConfig <- config
