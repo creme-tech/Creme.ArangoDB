@@ -16,9 +16,9 @@ module internal Transaction =
 
             let record =
                 { Collections =
-                      record.Collections
-                      |> List.map (fun (key, value) -> key.ToString().ToLower(), value)
-                      |> Map.ofList }
+                    record.Collections
+                    |> List.map (fun (key, value) -> key.ToString().ToLower(), value)
+                    |> Map.ofList }
                 |> serialize
 
             let! response = defaultConfig.Client.PostAsync(host, record)
