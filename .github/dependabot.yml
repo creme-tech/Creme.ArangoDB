@@ -1,0 +1,11 @@
+# Basic dependabot.yml file
+
+version: 2
+updates:
+  # Enable version updates for NuGet
+  - package-ecosystem: "nuget"
+    # Look for `*.fsproj` or `*.sln` files in the `root` directory
+    directory: "/"
+    # Check the NuGet registry for updates every day (weekdays)
+    schedule:
+      interval: "daily"
