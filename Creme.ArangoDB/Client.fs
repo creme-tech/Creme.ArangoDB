@@ -40,6 +40,7 @@ module internal Client =
             { defaultConfig with
                 Authorization = config.Authorization
                 Client =
+                    config.Client.DefaultRequestHeaders.Clear()
                     config.Client.DefaultRequestHeaders.Add("Authorization", config.Authorization)
                     config.Client
 
