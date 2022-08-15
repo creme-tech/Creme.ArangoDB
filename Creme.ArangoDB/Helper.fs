@@ -22,7 +22,10 @@ module internal Helper =
             return Json.deserializeEx<'T> config payload
         }
 
-    let internal eQueryResult = { ID = None; Result = [] }
+    let internal eQueryResult =
+        { ID = None
+          HasMore = false
+          Result = [] }
 
     let internal eTransactionResult = { Result = { ID = "#"; Status = "#" } }
 
