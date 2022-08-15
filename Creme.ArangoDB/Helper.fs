@@ -22,9 +22,9 @@ module internal Helper =
             return Json.deserializeEx<'T> config payload
         }
 
-    let internal emptyQueryResult = { Id = None; Result = [] }
+    let internal eQueryResult = { ID = None; Result = [] }
 
-    let internal emptyTransactionResult = { Result = { Id = "#"; Status = "#" } }
+    let internal eTransactionResult = { Result = { ID = "#"; Status = "#" } }
 
     let host action =
         Url.Combine(action |> Array.append [| defaultConfig.Target |])
