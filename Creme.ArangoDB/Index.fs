@@ -16,5 +16,5 @@ module internal Index =
 
             let! response = defaultConfig.Client.PostAsync(host, serialize record)
 
-            return int response.StatusCode, emptyQueryResult
+            return int response.StatusCode, eQueryResult
         }

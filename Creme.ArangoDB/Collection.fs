@@ -9,7 +9,7 @@ module internal Collection =
         task {
             let! response = defaultConfig.Client.GetAsync(host [| "_api"; "collection"; name |])
 
-            return int response.StatusCode, emptyQueryResult
+            return int response.StatusCode, eQueryResult
         }
 
 
@@ -19,5 +19,5 @@ module internal Collection =
 
             let! response = defaultConfig.Client.PostAsync(host [| "_api"; "collection" |], serialize record)
 
-            return int response.StatusCode, emptyQueryResult
+            return int response.StatusCode, eQueryResult
         }

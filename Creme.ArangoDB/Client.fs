@@ -13,14 +13,14 @@ module internal Client =
 
         handler.ConnectTimeout <- TimeSpan.FromSeconds 30
         handler.MaxConnectionsPerServer <- 30
-        handler.PooledConnectionLifetime <- TimeSpan.FromMinutes(15)
-        handler.PooledConnectionIdleTimeout <- TimeSpan.FromMinutes(5)
+        handler.PooledConnectionLifetime <- TimeSpan.FromMinutes 15
+        handler.PooledConnectionIdleTimeout <- TimeSpan.FromMinutes 5
         handler
 
     let internal httpClient =
         let client = new HttpClient(httpHandler)
 
-        (* TODO: Check if HTTP/2.0 has some connection error with ArangoDB *)
+        (* TODO: Check if HTTP/2.0 works with ArangoDB *)
         client.DefaultRequestVersion <- HttpVersion.Version11
         client.DefaultVersionPolicy <- HttpVersionPolicy.RequestVersionOrHigher
         client
@@ -29,11 +29,12 @@ module internal Client =
         { Authorization = "Basic cm9vdDpyb290"
           Client = httpClient
           Database = "_system"
-          Debug = true
+          Debug = false
           Host = "http://127.0.0.1:8529/"
           Target = "http://127.0.0.1:8529/_db/_system" }
 
-    let SetConfig (setter: Client -> Client) =
+    let SetConfig setter =
+        let setter: Client -> Client = setter
         let config = setter defaultConfig
 
         let config =

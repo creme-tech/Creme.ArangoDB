@@ -9,7 +9,7 @@ module internal Search =
         task {
             let! response = defaultConfig.Client.GetAsync(host [| "_api"; "view"; name |])
 
-            return int response.StatusCode, emptyQueryResult
+            return int response.StatusCode, eQueryResult
         }
 
     let CreateSearch record =
@@ -18,5 +18,5 @@ module internal Search =
 
             let! response = defaultConfig.Client.PostAsync(host [| "_api"; "view#arangosearch" |], serialize record)
 
-            return int response.StatusCode, emptyQueryResult
+            return int response.StatusCode, eQueryResult
         }

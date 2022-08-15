@@ -22,10 +22,10 @@ module ArangoDB =
         { BatchSize: int
           BindVars: Map<string, 'T>
           Query: string option
-          TransactionId: string option
+          TransactionID: string option
           TTL: int }
 
-    type QueryResult<'T> = { Id: string option; Result: 'T list }
+    type QueryResult<'T> = { ID: string option; Result: 'T list }
 
     type SearchLinkOptions = { IncludeAllFields: bool }
 
@@ -47,7 +47,7 @@ module ArangoDB =
     type TransactionPayload =
         { Collections: Map<string, string list> }
 
-    type TransactionResult = { Id: string; Status: string }
+    type TransactionResult = { ID: string; Status: string }
 
     type TransactionResponse = { Result: TransactionResult }
 
@@ -61,18 +61,18 @@ module ArangoDB =
 
     (* Options *)
 
-    let KeyTypeAutoIncrement = "autoincrement"
-    let KeyTypePadded = "padded"
-    let KeyTypeTraditional = "traditional"
-    let KeyTypeUUID = "uuid"
+    let KeyTypeAutoIncrement = "AutoIncrement".ToLower()
+    let KeyTypePadded = "Padded".ToLower()
+    let KeyTypeTraditional = "Traditional".ToLower()
+    let KeyTypeUUID = "UUID".ToLower()
 
     let DocumentCollection = 2
     let EdgeCollection = 3
 
-    let PersistentIndex = "persistent"
-    let TTLIndex = "ttl"
+    let PersistentIndex = "Persistent".ToLower()
+    let TTLIndex = "TTL".ToLower()
 
-    let SearchView = "arangosearch"
+    let SearchView = "ArangoSearch".ToLower()
 
     (* Default options *)
 
@@ -93,7 +93,7 @@ module ArangoDB =
         { BatchSize = 30
           BindVars = Map.empty<string, _>
           Query = None
-          TransactionId = None
+          TransactionID = None
           TTL = 30 }
 
     let SearchLinkOptions = { IncludeAllFields = false }

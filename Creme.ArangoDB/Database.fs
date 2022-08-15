@@ -20,7 +20,7 @@ module internal Database =
 
                         return object
                     else
-                        return emptyQueryResult
+                        return eQueryResult
                 }
 
             return status, rows
@@ -32,5 +32,5 @@ module internal Database =
 
             let! response = defaultConfig.Client.PostAsync(host [| "_api"; "database" |], serialize record)
 
-            return int response.StatusCode, emptyQueryResult
+            return int response.StatusCode, eQueryResult
         }

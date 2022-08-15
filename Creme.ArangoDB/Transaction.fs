@@ -34,32 +34,32 @@ module internal Transaction =
 
                         return object
                     else
-                        return emptyTransactionResult
+                        return eTransactionResult
                 }
 
             return status, rows
         }
 
-    let AbortTransaction transactionId =
+    let AbortTransaction transactionID =
         task {
             let host =
                 host [| "_api"
                         "transaction"
-                        transactionId |]
+                        transactionID |]
 
             let! response = defaultConfig.Client.DeleteAsync host
 
             return int response.StatusCode
         }
 
-    let CommitTransaction transactionId =
+    let CommitTransaction transactionID =
         task {
             let host =
                 host [| "_api"
                         "transaction"
-                        transactionId |]
+                        transactionID |]
 
             let! response = defaultConfig.Client.PutAsync(host, null)
 
-            return int response.StatusCode, emptyTransactionResult
+            return int response.StatusCode, eTransactionResult
         }
