@@ -7,7 +7,7 @@ module internal Database =
 
     let GetAccessibleDatabases () =
         task {
-            let! response = defaultConfig.Client.GetAsync(host [| "_api"; "database"; "user" |])
+            let! response = defaultConfig.Client.GetAsync (host [| "_api" ; "database" ; "user" |])
 
             let status = int response.StatusCode
 
@@ -28,9 +28,9 @@ module internal Database =
 
     let CreateDatabase record =
         task {
-            let record: DatabaseOptions = record
+            let record : DatabaseOptions = record
 
-            let! response = defaultConfig.Client.PostAsync(host [| "_api"; "database" |], serialize record)
+            let! response = defaultConfig.Client.PostAsync (host [| "_api" ; "database" |], serialize record)
 
             return int response.StatusCode, eQueryResult
         }

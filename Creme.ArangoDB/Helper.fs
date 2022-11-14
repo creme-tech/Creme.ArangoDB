@@ -12,9 +12,9 @@ module internal Helper =
     let private config =
         JsonConfig.create (unformatted = true, jsonFieldNaming = Json.lowerCamelCase)
 
-    let deserialize<'T> (content: HttpContent) =
+    let deserialize<'T> (content : HttpContent) =
         task {
-            let! payload = content.ReadAsStringAsync()
+            let! payload = content.ReadAsStringAsync ()
 
             if defaultConfig.Debug then
                 printfn "Deserialized payload: %s" payload
@@ -23,14 +23,16 @@ module internal Helper =
         }
 
     let internal eQueryResult =
-        { ID = None
-          HasMore = false
-          Result = [] }
+        {
+            ID = None
+            HasMore = false
+            Result = []
+        }
 
-    let internal eTransactionResult = { Result = { ID = "#"; Status = "#" } }
+    let internal eTransactionResult = { Result = { ID = "#" ; Status = "#" } }
 
     let host action =
-        Url.Combine(action |> Array.append [| defaultConfig.Target |])
+        Url.Combine (action |> Array.append [| defaultConfig.Target |])
 
     let serialize record =
         let payload = Json.serializeEx config record
@@ -38,4 +40,4 @@ module internal Helper =
         if defaultConfig.Debug then
             printfn "Serialized payload: %s" payload
 
-        new StringContent(payload, Encoding.UTF8, "application/json")
+        new StringContent (payload, Encoding.UTF8, "application/json")
