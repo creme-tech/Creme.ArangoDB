@@ -7,7 +7,7 @@ module internal Transaction =
 
     let BeginTransaction record =
         task {
-            let record: TransactionOptions = record
+            let record : TransactionOptions = record
 
             let host =
                 host [| "_api"
@@ -15,13 +15,15 @@ module internal Transaction =
                         "begin" |]
 
             let record =
-                { Collections =
-                    record.Collections
-                    |> List.map (fun (key, value) -> key.ToString().ToLower(), value)
-                    |> Map.ofList }
+                {
+                    Collections =
+                        record.Collections
+                        |> List.map (fun (key, value) -> key.ToString().ToLower (), value)
+                        |> Map.ofList
+                }
                 |> serialize
 
-            let! response = defaultConfig.Client.PostAsync(host, record)
+            let! response = defaultConfig.Client.PostAsync (host, record)
 
             let status = int response.StatusCode
 
@@ -59,7 +61,7 @@ module internal Transaction =
                         "transaction"
                         transactionID |]
 
-            let! response = defaultConfig.Client.PutAsync(host, null)
+            let! response = defaultConfig.Client.PutAsync (host, null)
 
             return int response.StatusCode, eTransactionResult
         }

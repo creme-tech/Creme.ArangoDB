@@ -7,14 +7,14 @@ module internal Index =
 
     let CreateIndex collectionName record =
         task {
-            let record: IndexOptions = record
+            let record : IndexOptions = record
 
             let host =
                 host [| "_api"
                         "index"
                         "?collection=" + collectionName |]
 
-            let! response = defaultConfig.Client.PostAsync(host, serialize record)
+            let! response = defaultConfig.Client.PostAsync (host, serialize record)
 
             return int response.StatusCode, eQueryResult
         }

@@ -9,7 +9,7 @@ Creme.ArangoDB is a ArangoDB driver for F# focused on consistency and minimalism
 ## Lint
 
 We use Fantomas tool to lint our project  
-Is highly recommended to setup it with `dotnet tool install --global --version 4.6.4 fantomas-tool` and a [`pre-commit` hook](https://github.com/fsprojects/fantomas/blob/master/docs/Documentation.md#a-git-pre-commit-hook-sample)
+Is highly recommended to setup it with `dotnet tool install --global --version 4.7.9 fantomas-tool` and a [`pre-commit` hook](https://github.com/fsprojects/fantomas/blob/master/docs/Documentation.md#a-git-pre-commit-hook-sample)
 
 (Do not forget to give the `pre-commit` file executable permissions)
 
