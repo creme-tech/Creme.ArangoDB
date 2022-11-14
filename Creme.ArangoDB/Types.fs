@@ -3,38 +3,48 @@
 module ArangoDB =
     open System.Net.Http
 
-    type CollectionKeyOptions = { Type: string }
+    type CollectionKeyOptions = { Type : string }
 
     type CollectionOptions =
-        { Name: string option
-          KeyOptions: CollectionKeyOptions
-          Type: int }
+        {
+            Name : string option
+            KeyOptions : CollectionKeyOptions
+            Type : int
+        }
 
-    type DatabaseOptions = { Name: string option }
+    type DatabaseOptions = { Name : string option }
 
     type IndexOptions =
-        { Fields: string list
-          ExpireAfter: int option
-          Type: string
-          Unique: bool }
+        {
+            Fields : string list
+            ExpireAfter : int option
+            Type : string
+            Unique : bool
+        }
 
     type Query<'T> =
-        { BatchSize: int
-          BindVars: Map<string, 'T>
-          Query: string option
-          TransactionID: string option }
+        {
+            BatchSize : int
+            BindVars : Map<string, 'T>
+            Query : string option
+            TransactionID : string option
+        }
 
     type QueryResult<'T> =
-        { ID: string option
-          HasMore: bool
-          Result: 'T list }
+        {
+            ID : string option
+            HasMore : bool
+            Result : 'T list
+        }
 
-    type SearchLinkOptions = { IncludeAllFields: bool }
+    type SearchLinkOptions = { IncludeAllFields : bool }
 
     type SearchOptions =
-        { Links: Map<string, SearchLinkOptions>
-          Name: string option
-          Type: string }
+        {
+            Links : Map<string, SearchLinkOptions>
+            Name : string option
+            Type : string
+        }
 
     type TransactionSubAttribute =
         | Read
@@ -44,67 +54,81 @@ module ArangoDB =
     type TransactionAttribute = TransactionSubAttribute * string list
 
     type TransactionOptions =
-        { Collections: TransactionAttribute list }
+        {
+            Collections : TransactionAttribute list
+        }
 
     type TransactionPayload =
-        { Collections: Map<string, string list> }
+        {
+            Collections : Map<string, string list>
+        }
 
-    type TransactionResult = { ID: string; Status: string }
+    type TransactionResult = { ID : string ; Status : string }
 
-    type TransactionResponse = { Result: TransactionResult }
+    type TransactionResponse = { Result : TransactionResult }
 
     type Client =
-        { Authorization: string
-          Client: HttpClient
-          Database: string
-          Debug: bool
-          Host: string
-          Target: string }
+        {
+            Authorization : string
+            Client : HttpClient
+            Database : string
+            Debug : bool
+            Host : string
+            Target : string
+        }
 
     (* Options *)
 
-    let KeyTypeAutoIncrement = "AutoIncrement".ToLower()
-    let KeyTypePadded = "Padded".ToLower()
-    let KeyTypeTraditional = "Traditional".ToLower()
-    let KeyTypeUUID = "UUID".ToLower()
+    let KeyTypeAutoIncrement = "AutoIncrement".ToLower ()
+    let KeyTypePadded = "Padded".ToLower ()
+    let KeyTypeTraditional = "Traditional".ToLower ()
+    let KeyTypeUUID = "UUID".ToLower ()
 
     let DocumentCollection = 2
     let EdgeCollection = 3
 
-    let PersistentIndex = "Persistent".ToLower()
-    let TTLIndex = "TTL".ToLower()
+    let PersistentIndex = "Persistent".ToLower ()
+    let TTLIndex = "TTL".ToLower ()
 
-    let SearchView = "ArangoSearch".ToLower()
+    let SearchView = "ArangoSearch".ToLower ()
 
     (* Default options *)
 
     let CollectionKeyOptions = { Type = KeyTypeUUID }
 
     let CollectionOptions =
-        { KeyOptions = CollectionKeyOptions
-          Name = None
-          Type = DocumentCollection }
+        {
+            KeyOptions = CollectionKeyOptions
+            Name = None
+            Type = DocumentCollection
+        }
 
     let IndexOptions =
-        { Fields = []
-          ExpireAfter = None
-          Type = PersistentIndex
-          Unique = true }
+        {
+            Fields = []
+            ExpireAfter = None
+            Type = PersistentIndex
+            Unique = true
+        }
 
     let QueryOptions =
-        { BatchSize = 30
-          BindVars = Map.empty<string, _>
-          Query = None
-          TransactionID = None }
+        {
+            BatchSize = 30
+            BindVars = Map.empty<string, _>
+            Query = None
+            TransactionID = None
+        }
 
     let SearchLinkOptions = { IncludeAllFields = false }
 
     let SearchOptions =
-        { Links = Map.empty<string, _>
-          Name = None
-          Type = SearchView }
+        {
+            Links = Map.empty<string, _>
+            Name = None
+            Type = SearchView
+        }
 
-    let TransactionOptions: TransactionOptions = { Collections = [] }
+    let TransactionOptions : TransactionOptions = { Collections = [] }
 
     (* Status *)
 

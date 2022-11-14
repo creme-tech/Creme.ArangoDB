@@ -14,23 +14,23 @@ module internal Query' =
                 if defaultConfig.Debug then
                     printfn "Transaction: %s" transactionID
 
-                content.Headers.Add("X-Arango-TRX-ID", transactionID)
+                content.Headers.Add ("X-Arango-TRX-ID", transactionID)
             | None ->
                 if defaultConfig.Debug then
                     printfn "Running with no transaction"
 
                 None |> ignore
 
-            let url = host [| "_api"; "cursor" |]
+            let url = host [| "_api" ; "cursor" |]
 
             if defaultConfig.Debug then
                 printfn "URL: %s" url
 
             if defaultConfig.Debug then
-                defaultConfig.Client.DefaultRequestHeaders.ToString()
+                defaultConfig.Client.DefaultRequestHeaders.ToString ()
                 |> printfn "Request headers: %s"
 
-            let! response = defaultConfig.Client.PostAsync(url, content)
+            let! response = defaultConfig.Client.PostAsync (url, content)
 
             let status = int response.StatusCode
 
