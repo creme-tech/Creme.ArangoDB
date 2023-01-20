@@ -27,12 +27,12 @@ module ArangoDB =
             BatchSize : int
             BindVars : Map<string, 'T>
             Query : string option
-            TransactionID : string option
+            TransactionId : string option
         }
 
     type QueryResult<'T> =
         {
-            ID : string option
+            Id : string option
             HasMore : bool
             Result : 'T list
         }
@@ -63,7 +63,7 @@ module ArangoDB =
             Collections : Map<string, string list>
         }
 
-    type TransactionResult = { ID : string ; Status : string }
+    type TransactionResult = { Id : string ; Status : string }
 
     type TransactionResponse = { Result : TransactionResult }
 
@@ -116,7 +116,7 @@ module ArangoDB =
             BatchSize = 30
             BindVars = Map.empty<string, _>
             Query = None
-            TransactionID = None
+            TransactionId = None
         }
 
     let SearchLinkOptions = { IncludeAllFields = false }

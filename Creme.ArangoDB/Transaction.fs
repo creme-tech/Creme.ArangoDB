@@ -42,24 +42,24 @@ module internal Transaction =
             return status, rows
         }
 
-    let AbortTransaction transactionID =
+    let AbortTransaction transactionId =
         task {
             let host =
                 host [| "_api"
                         "transaction"
-                        transactionID |]
+                        transactionId |]
 
             let! response = defaultConfig.Client.DeleteAsync host
 
             return int response.StatusCode
         }
 
-    let CommitTransaction transactionID =
+    let CommitTransaction transactionId =
         task {
             let host =
                 host [| "_api"
                         "transaction"
-                        transactionID |]
+                        transactionId |]
 
             let! response = defaultConfig.Client.PutAsync (host, null)
 
