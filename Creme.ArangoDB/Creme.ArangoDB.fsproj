@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Flurl" Version="3.0.6" />
+    <PackageReference Include="Flurl" Version="3.0.7" />
     <PackageReference Include="FSharp.Json" Version="0.4.1" />
   </ItemGroup>
 
