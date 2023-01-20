@@ -24,12 +24,12 @@ module internal Helper =
 
     let internal eQueryResult =
         {
-            ID = None
+            Id = None
             HasMore = false
             Result = []
         }
 
-    let internal eTransactionResult = { Result = { ID = "#" ; Status = "#" } }
+    let internal eTransactionResult = { Result = { Id = "#" ; Status = "#" } }
 
     let host action =
         Url.Combine (action |> Array.append [| defaultConfig.Target |])

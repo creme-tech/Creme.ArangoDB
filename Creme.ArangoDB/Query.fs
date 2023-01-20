@@ -9,12 +9,12 @@ module internal Query' =
         task {
             let content = serialize record
 
-            match record.TransactionID with
-            | Some transactionID ->
+            match record.TransactionId with
+            | Some transactionId ->
                 if defaultConfig.Debug then
-                    printfn "Transaction: %s" transactionID
+                    printfn "Transaction: %s" transactionId
 
-                content.Headers.Add ("X-Arango-TRX-ID", transactionID)
+                content.Headers.Add ("X-Arango-TRX-ID", transactionId)
             | None ->
                 if defaultConfig.Debug then
                     printfn "Running with no transaction"
@@ -45,8 +45,8 @@ module internal Query' =
                         return object
                     else
                         let! _ =
-                            match record.TransactionID with
-                            | Some transactionID -> Transaction.AbortTransaction transactionID
+                            match record.TransactionId with
+                            | Some transactionId -> Transaction.AbortTransaction transactionId
                             | None -> task { return 200 }
 
                         return eQueryResult
